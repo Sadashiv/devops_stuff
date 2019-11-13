@@ -1,103 +1,105 @@
-2,3,10,5,6,1
-print the right side one greater number.
-how to every monthsecond friday for 5hrs
+#2,3,10,5,6,1
+#print the right side one greater number.
+#how to every monthsecond friday for 5hrs
+#
+#Python runs .pyc file faster than .py
+#python program checks the timestamp with .py and .pyc
+#if .py got modified then, compile to bytecode .pyc
+#instead of module we can import file, but the import will not reload the code modified in other terminal.
 
-Python runs .pyc file faster than .py
-python program checks the timestamp with .py and .pyc
-if .py got modified then, compile to bytecode .pyc
-instead of module we can import file, but the import will not reload the code modified in other terminal.
+#Python's import loads a Python module into its own namespace,
+#import mod
+#a = mod.method
 
-Python's import loads a Python module into its own namespace,
-import mod
-a = mod.method
+#from loads a Python module into the current namespace,
+#from mod import *
+#b = method
+#help(S.replace)
 
-from loads a Python module into the current namespace,
-from mod import *
-b = method
-help(S.replace)
-
-reverse string
+#reverse string
 a = 'sada'
 b = a[::-1]
 
-raw string
-a= open(r'a.txt','r')
-r helps to make the path communication for windows and linux
+#raw string
+#a= open(r'a.txt','r')
+#r helps to make the path communication for windows and linux
 
-r+
-rb+ - open the file for reading and writing at the begining of file.
+#r+
+#rb+ - open the file for reading and writing at the begining of file.
 
-''.join([`x` for x in xrange(101)])
-''.join([`x` for x in xrange(101)])
+#''.join([`x` for x in xrange(101)])
 
-Note that the (`) is a backquote not a regiular single quote ('), and we can use str(x) instead. Also, since the xrange() is replaced with range in Python 3.x, we should use range() instead for compatibility.
+#Note that the (`) is a backquote not a regiular single quote ('), and we can use str(x) instead.
+#Also, since the xrange() is replaced with range in Python 3.x, we should use range() instead for compatibility.
 
-os.path.realpath('path') will give the absloute path exist or not
+#os.path.realpath('path') will give the absloute path exist or not
 
-Dictionaries provide very fast key lookup, unordered set of key value.
+#Dictionaries provide very fast key lookup, unordered set of key value.
 
-differance between dirname and basename, if / there at the will get /home/user
+#ifferance between dirname and basename, if / there at the will get /home/user
 
 >>> x = 5
 >>> while x > 0:
 	print('blah!' * x)
 	x -= 1
 
-f(*args) => pass n number of arguments or else just call function
-f(**args) => The ** is similar but it only works for keyword arguments and 
-The keyword arguments is a special name=value 
-**args collets and converts as dictionary.
+#f(*args) => pass n number of arguments or else just call function
+#f(**args) => The ** is similar but it only works for keyword arguments and
+#The keyword arguments is a special name=value
+#**args collets and converts as dictionary.
 
-increment or decrement the arguments by using the **args
+#increment or decrement the arguments by using the **args
 
-lambda => function doen't have return statement and looping compare to normal function.
+#lambda => function doen't have return statement and looping compare to normal function.
 
-lambda's body is a single expression, 
+#lambda's body is a single expression,
 def f(x, y, z): return x + y + z
 f = lambda x, y, z: x + y + z
-The map(aFunction, aSequence) function applies a passed-in function to each item in an iterable object and returns a list containing all the function call results
->>> a = map(lambda x:x+1, [5])
->>> b = reduce(lambda x:x+1, [5])
->>> c = filter(lambda x:x+1, [5])
->>> print a,b,c
-[6] 5 [5]
+#The map(aFunction, aSequence) function applies a passed-in function to each item in an
+#iterable object and returns a list containing all the function call results
+a = map(lambda x:x+1, [5])
+b = reduce(lambda x:x+1, [5])
+c = filter(lambda x:x+1, [5])
+print(a,b,c)
+#[6] 5 [5]
 
 b = list(filter(lambda x:x<0,range(-5,5)))
 
-"Decoration is a way to specify management code for functions and classes." ... 
-Decorators allow you to inject or modify code in functions or classes. Sounds a bit like Aspect-Oriented Programming (AOP)
+#"Decoration is a way to specify management code for functions and classes." ...
+#Decorators allow you to inject or modify code in functions or classes. Sounds a bit like Aspect-Oriented Programming (AOP)
 
 @myDecorator
 def aFunction():
-    print "inside aFunction"
-When the compiler passes over this code, aFunction() is compiled and the resulting function object is passed to the myDecorator code, which does something to produce a function-like object that is then substituted for the original aFunction().
+    print("inside aFunction")
+#When the compiler passes over this code, aFunction() is compiled and the resulting function object is passed to the myDecorator code,
+#which does something to produce a function-like object that is then substituted for the original aFunction().
 
 class myDecorator(object):
 
     def __init__(self, f):
-        print "inside myDecorator.__init__()"
+        print("inside myDecorator.__init__()")
         f() # Prove that function definition has completed
 
     def __call__(self):
-        print "inside myDecorator.__call__()"
+        print("inside myDecorator.__call__()")
 
 @myDecorator
 def aFunction():
-    print "inside aFunction()"
+    print("inside aFunction()")
 
-print "Finished decorating aFunction()"
+print("Finished decorating aFunction()")
 
 aFunction()
-When you run this code, you see:
+#When you run this code, you see:
 
-inside myDecorator.__init__()
-inside aFunction()
-Finished decorating aFunction()
-inside myDecorator.__call__()
+#inside myDecorator.__init__()
+#inside aFunction()
+#Finished decorating aFunction()
+#inside myDecorator.__call__()
 
 def foo(): pass
 foo = staticmethod(foo)
-With the addition of the @ decoration operator, you now get the same result by saying:
+#With the addition of the @ decoration operator, you now get the same result by saying:
 
 @staticmethod
 def foo(): pass
@@ -109,38 +111,39 @@ class entryExit(object):
         self.f = f
 
     def __call__(self):
-        print "Entering", self.f.__name__
+        print("Entering", self.f.__name__)
         self.f()
-        print "Exited", self.f.__name__
+        print("Exited", self.f.__name__)
 
 @entryExit
 def func1():
-    print "inside func1()"
+    print("inside func1()")
 
 @entryExit
 def func2():
-    print "inside func2()"
+    print("inside func2()")
 
 func1()
 func2()
-The output is:
+#The output is:
 
-Entering func1
-inside func1()
-Exited func1
-Entering func2
-inside func2()
-Exited func2
+#Entering func1
+#inside func1()
+#Exited func1
+#Entering func2
+#inside func2()
+#Exited func2
 
-When to use list comphrehension
+#When to use list comphrehension
 
-The map calls are roughly twice as fast as equivalent for loops. List comprehensions are usually slightly faster than map calls. This speed difference is largely due to the fact that map and list comprehensions run at C language speed inside the interpreter.
+#The map calls are roughly twice as fast as equivalent for loops.List comprehensions are usually slightly faster than map calls.
+#This speed difference is largely due to the fact that map and list comprehensions run at C language speed inside the interpreter.
 
-[X**2 for x in range(10)]
+[x**2 for x in range(10)]
 
-Set
-unodered one,set.update(muiltiple) set.add('1')
-union and intersection
+#Set
+#unodered one,set.update(muiltiple) set.add('1')
+#union and intersection
 
 >>> from sets import Set
 >>> a =set([1,2])
@@ -160,11 +163,6 @@ Dictionary in python is implemented using the hash
 >>> hash
 {'a': 1, 'c': 3, 'b': 2}
 
-
-
- 
-
-i
 def func():
    print "func()"
 
@@ -201,7 +199,7 @@ List comprehension
 >>> words = 'The quick brown fox jumps over the lazy dog'.split()
 >>> print words
 ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
->>> 
+>>>
 >>> stuff = [[w.upper(), w.lower(), len(w)] for w in words]
 printing {x2:x in (0...10)
 
@@ -209,7 +207,7 @@ os.path.dirname(os.getcwd())
 '/home'
 >>> os.path.basename(os.getcwd())
 'user'
->>> 
+>>>
 
 for dirpath,dirs,files in os.walk(os.getcwd()):
 print basedir, dirs=>print nested folders files=> print all the files
@@ -226,7 +224,7 @@ q,w,e,r = c
 print q, w, e, r
 
 Unpacking actually works with any object that happens to be iterable, not just tuples or
-lists. This includes strings, files, iterators, and generators. 
+lists. This includes strings, files, iterators, and generators.
 s = 'Hello'
 d,f,g,hj,l = s
 print  d,f,g,hj,l
@@ -271,7 +269,7 @@ xrange => returns and iterator light weight and faster.
 
 >>> for x in range(5):
 ...  print x**3
-... 
+...
 0
 1
 8
@@ -303,16 +301,11 @@ Then, if we run the monkey-patch testing like this:
 >>> def monkey_f(self):
 	print "monkey_f()"
 
-	
+
 >>> m.MyClass.f = monkey_f
 >>> obj = m.MyClass()
 >>> obj.f()
 monkey_f()
-
->>> dup_list = [1,2,3,4,4,4,5,1,2,7,8,8,10]
->>> unique_list = list(set(dup_list))
->>> print unique_list
-[1, 2, 3, 4, 5, 7, 8, 10]
 
 
 Name the functional approach that Python is taking.
@@ -330,13 +323,13 @@ Passing the n number of arguments
 >> def print_all(*args):
 	for x in enumerate(args):
 		print x
-		
+
 >>> print_all('A','b','b','a')
 (0, 'A')
 (1, 'b')
 (2, 'b')
 (3, 'a')
->>> 
+>>>
 The keyword arguments is a special name=value syntax in function calls that specifies passing by name. It is often used to provide configuration options.
 
 >>> def kargs_function(**kargs):
@@ -353,19 +346,9 @@ The keyword arguments is a special name=value syntax in function calls that spec
 ('tres', 'three')
 ('uno', 'one')
 
-Iterators in Python are used to iterate over a group of elements, containers, like list. For a container to support iterator, it must provide __iter__().
-
-1. iterator.__iter__() :
-    It returns the iterator object itself. This is required to allow both containers and iterators to be used with the for and in statements.
-
-2. iterator.__next__() :
-    It returns the next item from the container. If there are no further items, raise the StopIteration exception.
-
-Generators are way of implementing iterators. Generator function is a normal function except that it contains yield expression in the function definition making it a generator function. This function returns a generator iterator known as generator.
-
 http://www.questionscompiled.com/python-interview-questions.html
 
-Slicing in Python is a mechanism to select a range of items from Sequence types like strings, list, tuple, etc. 
+Slicing in Python is a mechanism to select a range of items from Sequence types like strings, list, tuple, etc.
 
 
 If the base class is present in other module, the syntax for derivation changes to:
@@ -438,12 +421,14 @@ Genrators executes faster
     a, b = 0, 1            (1)
     while a < max:
         yield a            (2)
-        a, b = b, a + b    (3) 
+        a, b = b, a + b    (3)
 
 >>> for n in fibonacci(500):
 	print(n, end=' ')
 
-Generator expressions are a memory-space optimization. They do not require the entire result list to be constructed all at once while the square-bracketed list comprehension does. They may also run slightly slower in practice, so they are probably best used only for very large result sets.
+Generator expressions are a memory-space optimization
+. They do not require the entire result list to be constructed all at once while the square-bracketed list comprehension does.
+They may also run slightly slower in practice, so they are probably best used only for very large result sets.
 
 
 Generator: Functions vs. Expressions
@@ -457,8 +442,8 @@ Expression
 	for c in x:
 		yield c * 5
 
-		
+
 >>> G = repeat5times('Python')
 >>> list(G)
 ['PPPPP', 'yyyyy', 'ttttt', 'hhhhh', 'ooooo', 'nnnnn']
->>> 
+>>>
