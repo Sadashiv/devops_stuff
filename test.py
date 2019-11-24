@@ -38,10 +38,10 @@ b = a[::-1]
 
 #ifferance between dirname and basename, if / there at the will get /home/user
 
->>> x = 5
->>> while x > 0:
-	print('blah!' * x)
-	x -= 1
+x = 5
+while x > 0:
+    print('blah!' * x)
+    x -= 1
 
 #f(*args) => pass n number of arguments or else just call function
 #f(**args) => The ** is similar but it only works for keyword arguments and
@@ -145,26 +145,22 @@ func2()
 #unodered one,set.update(muiltiple) set.add('1')
 #union and intersection
 
->>> from sets import Set
->>> a =set([1,2])
->>> b = Set([2,3])
->>> a =Set([1,2])
->>> c = a | b
->>> c
-Set([1, 2, 3])
->>> a & b
-Set([2])
+from sets import Set
+a =set([1,2])
+b = Set([2,3])
+a =Set([1,2])
+c = a | b
+print(a & b)
 
 
-Dictionary in python is implemented using the hash
->>> keys = ['a', 'b', 'c']
->>> values = [1, 2, 3]
->>> hash = {k:v for k, v in zip(keys, values)}
->>> hash
-{'a': 1, 'c': 3, 'b': 2}
+#Dictionary in python is implemented using the hash
+keys = ['a', 'b', 'c']
+values = [1, 2, 3]
+hash = {k:v for k, v in zip(keys, values)}
+print(hash)
 
 def func():
-   print "func()"
+   print(func())
 
 funcObj = func
 funcObj()
@@ -185,38 +181,31 @@ if __name__ == '__main__':
     my_fnc()
     my_fnc()
 
-    print 'my_fnc.counter=',my_fnc.counter
-==>3
-when we call the my_fnc it's get called the count function
+    print('my_fnc.counter=',my_fnc.counter)
+
+#when we call the my_fnc it's get called the count function
 
 
 
->>> for i, season in enumerate(['Spring', 'Summer', 'Fall', 'Winter']):
-...     print(i, season)
+for i, season in enumerate(['Spring', 'Summer', 'Fall', 'Winter']):
+    print(i, season)
 
-List comprehension
+#List comprehension
 
->>> words = 'The quick brown fox jumps over the lazy dog'.split()
->>> print words
-['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
->>>
->>> stuff = [[w.upper(), w.lower(), len(w)] for w in words]
-printing {x2:x in (0...10)
-
-os.path.dirname(os.getcwd())
-'/home'
->>> os.path.basename(os.getcwd())
-'user'
->>>
+words = 'The quick brown fox jumps over the lazy dog'.split()
+print(words)
+stuff = [[w.upper(), w.lower(), len(w)] for w in words]
+print(stuff)
 
 for dirpath,dirs,files in os.walk(os.getcwd()):
-print basedir, dirs=>print nested folders files=> print all the files
+    print(basedir, dirs)#=> nested folders
+    print(files)#=> print all the files
 
 
-glob.glob(os.path.join(os.getcwd(), '*.py'))
-subprocess.call()
-Setting the shell argument to a true value causes subprocess to spawn an intermediate shell process, and tell it to run the command,
- command will be executed erlier checking for the shell
+#glob.glob(os.path.join(os.getcwd(), '*.py'))
+#subprocess.call()
+#Setting the shell argument to a true value causes subprocess to spawn an intermediate shell process, and tell it to run the command,
+# command will be executed erlier checking for the shell
 
 Unpacking sequence into seprate varibales.
 c = (1,2,3,4)
@@ -447,3 +436,4 @@ Expression
 >>> list(G)
 ['PPPPP', 'yyyyy', 'ttttt', 'hhhhh', 'ooooo', 'nnnnn']
 >>>
+printzip(["a", "b", "c"], [1, 2, 3]))
