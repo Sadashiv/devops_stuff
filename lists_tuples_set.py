@@ -90,6 +90,8 @@ name[0] = 'Ramesh'
 print(name)
 print(name2)
 
+import sys
+sys.exit(1)
 #Immutable
 tup1 = ('Sada', 'Badagai', 'Babalad')
 tup2 = tup1
@@ -116,3 +118,18 @@ name2_set = {'Ramesh', 'Badagai', 'Babalad'}
 print(name1_set.intersection(name2_set))
 print(name1_set.difference(name2_set))
 print(name1_set.union(name2_set))
+
+#Sort the list without disturbing existing list
+lst = [1,2,3,1,1]
+print("Original list: %s" %lst)
+new_sort=sorted(lst, reverse=True)
+print("Sorted List: %s" %new_sort)
+new_sort_meth = lst[:]
+new_sort_meth.sort()
+print(new_sort_meth)
+lst.sort()
+print(lst)
+
+uniq = set(lst)
+print(uniq)
+

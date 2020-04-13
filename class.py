@@ -12,8 +12,19 @@ class Airthop(object):
     def div(self):
         return self.num1 / self.num2
 
+class Inherit(Airthop):
+    pass
+    def add(self):
+        return self.num1 + self.num2 +10
+
 obj = Airthop(1, 2)
+obj2 = Inherit(1, 6)
+print(obj2.add())
 print(obj.add())
 print(obj.sub())
 print(obj.mul())
 print(obj.div())
+    def kkkk(self):
+    def kkkk(self):
+print(obj2.kkkk())
+print(obj.kkkk())

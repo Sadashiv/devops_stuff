@@ -19,3 +19,4 @@ print(3%2) #Modulus
 num1='100'
 num1=int(num1) #Type cast to int
 print(num1)
+print(greeting[::-1])
