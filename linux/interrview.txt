@@ -1,0 +1,16 @@
+lsof -- > List of open files for particular process
+What is the spam module in linux
+Spam emails are those unwanted messages sent in bulk, primarily from a commercial advertiser.
+
+
+What is jumpbox
+Bastion hosts (also called “jump servers”) are often used as a best practice for accessing privately
+accessible hosts within a system environment.To access it for product updates or managing system patches,
+you typically log in to a bastion host and then access (or “jump to”) the application host from there.
+
+lookahead and lookbehind
+
+How to get remote server is up or not in shell script
+-> ping -c1 -W1 127.0.0.1 && echo 'server is up' || echo 'server is down'
+
+
