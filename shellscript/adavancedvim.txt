@@ -1,0 +1,56 @@
+The vi editor basic command and shortcuts
+=========================================
+~/.vimrc -- File is required
+Command		Function
+d	--	Delete
+c	--	Change
+y	--	Pank(copy)
+X,X,d   -- 	Delete charcter and line
+dw	--	Delete word
+dc	--	Change text
+d$	--	Rest of line
+dw.dG	--	Delete current position to end of line
+G	--	Will go end of line
+5yy,5dd,5dc--	Copy,Delete and change 5 lines
+!	--	Filter to act on text
+!Gsort	--	Sort all lines frm cirrent position to end of file
+:vsp	--	Split the vim editor veritcally switching window ctrl+w shif+w
+:sp	--	Split existing window in two
+:on	--	Delete the window
+:new	--	New window
+:r file.txt -- Insert file into the currently opened browser
+:r !date--	Insert ouyput of date command Sat Jan26 13:40:56 IST 2013
+d$ or D	--	Delete from cursor to end of line
+d/}	--	Delete from cursor up to first occurance of }
+d20G	-- 	Delete from cursor up to line number 20
+df . 	-- 	Deletefrom cursor to the to first occurance of .
+y$ or Y -- 	Yanks from cursor to the end of line
+yG	-- 	Yanks from cursor to the end of line
+y?case 	-- 	Yanks from cursor up to first occurance of string case in reverse direction 
+:1 	--	Go to first line
+:30 	-- 	Go to 30th line
+cc 	-- 	Change current line
+!Gsort	-- 	Sorts all lines from current cursor position to end of file
+!!tr '[a-z]' '[A-z]' -- Convert current line to uppercase
+
+Moving the text from one file to Another[buffer]
+================================================
+10yy -- copy
+:e README.txt-sitching the file
+30G-move to line 30
+p-paste
+
+The general vi enviroment is determined by is't variable settings
+.vimrc-is required for 
+:set autoindent # alias:set ai
+set options
+===========
+option      abbrevation
+autoindent  ai
+autowrite   aw
+ignorecase  ic
+magic       ic
+number 	    nu
+showmatch   sm
+tabstop     ts
+wrapscan    ws

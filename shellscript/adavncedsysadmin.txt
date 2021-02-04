@@ -1,0 +1,31 @@
+Advanced System Administration
+==============================
+paswword aging
+passd -n 12 sadashiv -- Minimum 12 weeks before passwd can be changed
+passd -x 24 sadashiv -- Maximum 24 weeks before passwd can be changed
+
+The Boot Block: The first block of file system is known as the boot block.containing the small bootstrap ptogram often refrred to as the Master Boot Record.
+
+Inode Blocks: The inode blocks contain all inodes.
+Data blocks: All files data stored in the data block.
+
+Standarad file system
+The root file system -- /bin /etc /dev and /lib directories
+
+fdisk -- Creating the partition
+mkfs -- Creating the a file system
+mount -- Mount file system
+umount -- Unmount file system
+sudo fdisk -l
+/et/fstab -- Configuring the mount
+fsck -- file system checking
+System startup and init
+When the system startup the kernel will be loaded into the memory.
+init Run levels
+
+Find command with xargs :Building the dynamic command line
+Linux is a UNIX Clone
+
+But if you consider Portable Operating System Interface (POSIX) standards then Linux can be considered as UNIX. To quote from Official Linux kernel README file:
+
+    Linux is a Unix clone written from scratch by Linus Torvalds with assistance from a loosely-knit team of hackers across the Net. It aims towards POSIX compliance.
