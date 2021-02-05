@@ -1,0 +1,206 @@
+lsof -- > List of open files for particular process
+What is the spam module in linux
+Spam emails are those unwanted messages sent in bulk, primarily from a commercial advertiser.
+
+
+What is jumpbox
+Bastion hosts (also called “jump servers”) are often used as a best practice for accessing privately
+accessible hosts within a system environment.To access it for product updates or managing system patches,
+you typically log in to a bastion host and then access (or “jump to”) the application host from there.
+
+lookahead and lookbehind
+
+How to get remote server is up or not in shell script
+-> ping -c1 -W1 127.0.0.1 && echo 'server is up' || echo 'server is down'
+
+Find the memory in 
+In use: free | grep Mem | awk '{print $3/$2 * 100.0}'
+Free memory:  free | grep Mem | awk '{print $4/$2 * 100.0}'
+
+sendmail mutt mail etc -s "Subject line" to_email < body.txt file
+
+Find ipaddress from log file
+grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /opt/sonarqube/logs/sonar.log
+grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /opt/sonarqube/logs/sonar.log | sort -u
+grep -c -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /opt/sonarqube/logs/sonar.log | sort -u
+egrep -o '([0-9]{1,3}\.){3}[0-9]{1,3}' /opt/sonarqube/logs/sonar.log
+
+grep 
+====
+grep -i awk *
+grep -h awk * #All the folders with files have awk
+grep -L awk * #Displays from files and folders
+grep -l awk * #Displays only from directories in current directory
+grep -v awk filename
+#The '-v' option tells the grep to print the lines that do not contain the specified pattern.
+grep -n s README.md
+grep ^= README.md
+grep =$ README.md
+grep -w awk README.md
+#Match a particular string
+grep -w Decorators README.md
+grep -R awk * #Recursive search of files and directories
+grep -c for * #Count the number of time for found in a file
+#Recursively search for a keyword and also get filename using -H (filename), -R (recursive), -i (case-insensitive) flag 
+grep -HRi "awk" *
+head -1 README.md
+tail -n 2 README.md
+
+egrep
+=====
+Used mainly executes faster than grep and supports extended grep of string
+egrep -l  awk linux/interrview.txt
+o/p: linux/interrview.txt
+egrep -L  awk linux/interrview.txt
+o/p:
+
+egrep -e  awk linux/interrview.txt #many macthes found
+egrep -o awk linux/interrview.txt #only look for particular string
+egrep -n awk linux/interrview.txt #print line number with string match
+egrep -m 2 awk linux/interrview.txt #search for two time string and exit or comes out
+egrep -r -i do * #Search recursively for string in files and folder
+
+find
+====
+find . -name "*.sh" #List all the shell script files endswith .sh
+find . -type f #List all the files in direstory even with hidden files
+find /home/sadashiv/ -type d -mtime 2 #List of directories modified two days
+find /home/sadashiv/ -type f -mtime 2 #List of files modified two days
+#2 exact day #-2 files modified less than two days #+2 files modified more than two days
+find . -perm 755 #Find files with permission 755
+find /home/sadashiv/ -iname "linux" -print #Find casse insensitive string
+find /tmp/ -name "skype*" | xargs rm -f
+find /tmp -mtime +14 | xargs rm
+
+The xargs command in UNIX is a command line utility for building an execution pipeline from standard input.
+Whilst tools like grep can accept standard input as a parameter, many other tools cannot.
+Using xargs allows tools like echo and rm and mkdir to accept standard input as arguments.
+
+time find . -type f -name "*.txt" -exec rm {} \;
+0.35s user 0.11s system 99% cpu 0.467 total
+
+time find ./foo -type f -name "*.txt" | xargs rm
+0.00s user 0.01s system 75% cpu 0.016 total
+Clearly using xargs is far more efficient. In fact several benchmarks suggest using xargs over exec {} is six times more efficient.
+
+echo "one two three"|xargs -t mkdir  #-t prints each time command get executed
+echo "one two three"|xargs -I % sh -c 'echo %; mkdir %' #Run multiple commands at a time
+
+find . -size +10000c -exec ls -l {} \; #always mention c means in bytes
+find . -size +1000c -size +10000c -exec ls -l {} \; #Take range
+find /tmp -type f -empty #Find empty files under directory
+ifind /tmp -type f -name ".*" #Find all the hidden files and directories
+find /home/sadashiv/ -user sadashiv -name test.txt #user with sadashiv file names
+find / -cmin -60 #File changed in last 1 hour
+find / -mmin -60 #File modified in last 1 hour
+find / -amin -60
+find / -size 50M
+
+find / -perm /u=r #Find all the files with readonly
+find / -perm /a=x #Find all the files with executable
+find /etc/ -maxdepth 2 -name "*.conf" #Find two level *.conf files
+
+sed stand for Stream editor
+===========================
+
+sed -e s/Sadashiv/Sada/g README.md #Like verbose mode 
+sed  s/Sadashiv/Sada/g README.md
+sed -i s/Sadashiv/Sada/g README.md
+sed -i 's/SadAshiv/SAdashiv/g'  README.md
+sed -i 's/Sadashiv/SADAshiv/;s/SadAshiv/sadaSHIV/' README.md  #multiple string search and replace in one command
+sed -i 's/^Sandy$/SADA/'  README.md #String which startswith and edswith Sandy replace
+sed -i 's/\bSADA\b/Sandy/'  README.md #String which startswith and edswith Sandy replace
+sed -e 's/\//,/g' README.md #search and replace / by ,
+sed -e 's/Apple/Mango/2' README.md #search and replace the second occurence of Apple with mango
+sed -i '12 s/Shell/ShellScript/' README.md #Line number tweleve search shell with ShellScript
+sed '100,$ s/lite/light/' #Search and replace 100th line onwards
+sed -i '1,10 d' shellscript/adavncedsysadmin.txt #Remove first 10 lines
+sed -i 'p' README.md#Copy lines in a file
+sed -i '/^$/ p' README.md #Duplicate empty lines
+sed -n '/Apple/!p' README.md #Line contains Apple will not be displayed
+
+CURL stands for (Client for URL Resource Library or CURL Resource Library)
+===========================================================================
+
+-H : Stands for Header
+-D : Data input
+-X : PUT/POST/GET
+
+curl https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz --output Python-3.7.9.tar.xz
+ % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 16.5M  100 16.5M    0     0   286k      0  0:00:59  0:00:59 --:--:--  225k
+--silent/s no output display
+-s
+-C resume where it was stopped or network is down
+
+
+awk-pattern scanning and text processing language
+=================================================
+
+Syntax: awk 'BEGIN {start_action} {action} END {stop_action}' filename
+you can convert awk to perl simply running a2p
+
+ls -l | awk  '{print $1}'
+ls -l | awk  '{print $1,$4}'
+ls -l | awk  '{ if ($3 == "sadashiv") print $3}'
+awk 'BEGIN { for(i=1;i<=5;i++) print "square of", i, "is",i*i; }'
+
+File permission
+==============
+read -    4
+write -   2
+execute - 1
+Nopermission - 0/-
+
+ugoa-user, group , others, all
+
+Number  Permission Type     Symbol
+0       No Permission       ---
+1       Execute             --x
+2       Write               -w-
+3       Execute + Write     -wx
+4       Read                r--
+5       Read + Execute      r-x
+6       Read +Write         rw-
+7       Read+Write+Execute  rwx
+
+chmod u+x filename 
+chmod g-x filename 
+
+Operator    Description
++           Adds a permission to a file or directory
+-           Removes the permission
+=           Sets the permission and overrides the permissions set earlier.
+chown -R user:group filename/folder
+chgrp gorupname filname
+
+What is umask?
+In computing, umask is a command that determines the settings of a mask that controls which file permissions
+are set for files and directories when they are created.
+
+After Sticky Bit without executable permission
+chmod 1774 /statusupdate
+ls -l
+drwxrwxr-T. 3 root root 4096 Oct 17 07:07 statusupdate
+
+What is Linux Kernel?
+    The Linux Kernel is a low-level systems software whose main role is to manage hardware resources for the user.
+    It is also used to provide an interface for user-level interaction.
+
+What is LILO?
+    LILO is a boot loader for Linux. It is used mainly to load the Linux operating system into main memory so that it can begin its operations.
+
+What is a swap space?
+    Swap space is a certain amount of space used by Linux to temporarily hold some programs that are running concurrently.
+    This happens when RAM does not have enough memory to hold all programs that are executing.
+
+What is a typical size for a swap partition under a Linux system?
+    The preferred size for a swap partition is twice the amount of physical memory available on the system.
+    If this is not possible, then the minimum size should be the same as the amount of memory installed.
+
+
+
+
+
+

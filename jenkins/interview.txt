@@ -1,0 +1,131 @@
+Jenkins
+=======
+
+Jenkins Continuous Integration(CI) and Continuous Delivery(CD)
+
+Jenkins is fork of the original Hudson project
+Why is the success ball is in Blue color
+
+Jenkins Opens Source
+Jenkins Enterprise(Cloud bees)
+
+LTS vs other versions.
+
+Jenkins installation
+Prerequiste
+JRE(Java runtime environment)
+Windows: https://www.jenkins.io/download/thank-you-downloading-windows-installer-stable/
+
+Linux: 
+Install system level
+sudo apt-get install jenkins -y
+sudo yum install jenkins -y
+
+Deploy via tomcat
+
+cd /opt
+wget -c https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
+mv apache-tomcat-9.0.41 tomcat
+cd tomcat/
+./bin/startup.sh
+cd webapps/
+wget -c https://get.jenkins.io/war-stable/2.263.1/jenkins.war
+cd /opt/tomcat
+./bin/shutdown.sh 
+./bin/startup.sh
+
+
+http://IP:PORT/jenkins
+
+Run/Install via command line.
+ #!/bin/bash
+export JENKINS_HOME=/home/sadashiv/jenkins
+/usr/bin/java -jar jenkins.war -Dmail.smtp.localhost=stmp.gmail.com --httpPort=8888 --logfile=/home/sadashiv/jenkins/jenkins.log --daemon
+echo $JENKINS_HOME
+
+Jenkins Access:
+Default access Anonymous
+
+Delegate to servlet container
+Jenkins own user database
+LDAP
+Unix user/group database
+None
+
+
+Easy to use
+ Great extensibility
+ Support different version control systems
+ Code quality metrics
+ Build notifiers
+ UI customization
+
+Plugins Installation
+Around 1000 plugins are available
+Plugins installation
+
+Terminology
+Job - A unit of work for project
+View - User defined collection of jobs or a workflow
+Master- The central jenkins master, does job scheduling
+Slave - Executes one or more jobs within slots(executors)
+Workspace - Working are where a job is carried out
+Plugin - User defined collection of jobs or workflow
+
+Jenkins Master and Slave Architecture
+Image
+
+What is Continuous Integration
+Detects  changes in subversion performs tasks repeatedly(Build, Test, Deploy, Test Package)
+
+If the build fails send email to respective Dev team
+Image with workflow
+
+JobConfigHistory
+Disk Usage
+Email-ext
+Parameterized Trigger
+
+Jenkins Pipeline
+
+History of Jenkins
+Jenkins installation
+Jenkins Access and plugin installation
+Terminology
+Jenkins Master and Slave Architecture
+Jenkins Job creation
+Jenkins piepline
+
+
+Code: Pipelines are implemented in code and typically checked into source control, giving teams the ability to edit,
+review, and iterate upon their delivery pipeline.
+
+Durable: Pipelines can survive both planned and unplanned restarts of the Jenkins controller.
+
+Pausable: Pipelines can optionally stop and wait for human input or approval before continuing the Pipeline run.
+
+Versatile: Pipelines support complex real-world CD requirements, including the ability to fork/join, loop, and perform work in parallel.
+
+Extensible: The Pipeline plugin supports custom extensions to its DSL footnote:dsl:[] and multiple options for integration with other plugins.
+
+Two type of pipelines
+Delartive - Writing Jenkinsfile and placing into the version control
+Scripted - Writing it in the job no version control job lost script also lost, tedious maniantain
+
+agent is block in case of declartive to define which agent/label you want to run
+node is block in case of declartive to define which node/label you want to run
+
+$JENKINS_HOME is where all Jenkins-based installations store configuration, build logs, and artifacts.
+
+Plugins installed
+github
+Join trigger
+Trigger remote jenkin job
+Send email Ext
+sonarqube
+Trigger/call builds on other projects
+Disk Usage
+Job Config History
+Mask password
+Rebuilder
+Workspace cleanup
