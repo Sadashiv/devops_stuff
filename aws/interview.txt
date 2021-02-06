@@ -1,0 +1,28 @@
+What is differance between AWS Regions and Availability zones
+    AWS Regions are large and widely dispersed into separate geographic locations.
+    Availability Zones are distinct locations within an AWS Region that are engineered
+    to be isolated from failures in other Availability Zones.
+
+What is jump box in aws
+    Bastion hosts (also called “jump servers”) are often used as a best practice for accessing privately
+    accessible hosts within a system environment. To access it for product updates or managing system patches,
+    you typically log in to a bastion host and then access (or “jump to”) the application host from there
+
+Object storage
+    Object storage takes each piece of data and designates it as an object. Data is kept in separate storehouses
+    versus files in folders and is bundled with associated metadata and a unique identifier to form a storage pool.
+
+File Storage
+    File storage stores data as a single piece of information in a folder to help organize it among other data.
+    This is also called hierarchical storage, imitating the way that paper files are stored.
+    When you need access to data, your computer system needs to know the path to find it.
+
+VPC
+    Amazon Virtual Private Cloud (Amazon VPC) is a service that lets you launch AWS resources in a logically isolated
+    virtual network that you define. You can use both IPv4 and IPv6 for most resources in your virtual private cloud,
+    helping to ensure secure and easy access to resources and applications.
+
+IAM
+    Anything we do in IAM is global not region based one.
+
+
