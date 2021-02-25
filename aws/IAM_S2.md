@@ -28,7 +28,7 @@ Objects consist of the fallowing
     Access control Lists
     Torrent
 
-S3 has the fallowing features:
+* S3 has the fallowing features:
 - Tiered storage availble
 - Lifecycle management
 - Versioning
@@ -36,7 +36,7 @@ S3 has the fallowing features:
 - MFA Delete
 - Secure your data using Access control Lists and Bucket policies
 
-S3 Storage classes
+* S3 Storage classes
 
 - S3 standarad 
 - S3 IA(Infrequently accessed) May be monthly once
@@ -68,6 +68,15 @@ Restricting the Bucket Access
 - Object policies - Applied to individual files
 - IAM Policies to Users and Groups - Applies to Users and Groups
 
+s3 basics
+ Encryption in Transit is achieved by SSL/TLS
+ Encryption At Rest(Server Side) is schieved by
+    - s3 managed keys-SSE(Server side Encryption)-S3
+    - AWS key management service managed keys-SSE-KMS
+    - Server side Encryption with customer provided keys-SSE-C
+
+Client side Encryption
+
 Encrypt at bucket level, Individual object level,
 Each version to be made public in S3 bucket to access by default it will be private
 Once versioning enabled it can't be Disabled, but it can be suspended
@@ -97,7 +106,7 @@ S3 Performance
   2 prefixes 11,000 per second
 
 S3 before uses more time time download cvs/zip file and load data
-S3 select after write simple SQl query to increase performance up to 400% and 80% cheaper
+S3 select after write simple SQl query(get subset of data) to increase performance up to 400% and 80% cheaper
 
 3 different ways to share S3 bucket across accounts
 - Using Bucket policies and IAM(Applies across the entire bucket) programatic access only
@@ -119,7 +128,7 @@ own cloud to aws
 
 Cloud front is CDN
 - CloudFront Distributions
-- Web and RTMP
+- Web and RTMP(user for media streamin)
 
 Edge location - This is location where content will be cached. this is seperate to an AWS Region/AZ
 Origin - This is the origin of all the files that CDN will distribute. This can be either an S3 bucket, an EC2 instance,
@@ -135,6 +144,7 @@ Cloud Front Signed URL's and Cookies
 - Signed URL is for individual files 1 file = 1 URL
 - Signed cookie is for multiple files 1 cookie = multiple files
 - If your origin is EC2, then use CloudFront
+You can invalidate and this will go away from edge location
 
 Note: Snowball topic is optional for AWS Exam
 Snowball is transfering the very high data to AWS
@@ -145,15 +155,18 @@ Three different types of storage
     Stored Volumes - Entire dataset is stored on site and is asynchronusly backed up to S3
     Cached Volumes - Entire dataset is stored on S3 and the most frequently accessed data is cached on site
 - Tape gateway(VTL) 
+Datasync
+One premisis store data and push to s3
+
 
 Athena Vs Macie
-Athena
+Athena(for sql query S3)
 - Athena is an interactive query service
 - It allows you to query data located in S3 using standarad SQL
 - Serverless
 - Commonly used to analyse data stored in S3
 
-Macie
+Macie(Secuirty service looks for PII)
 - Macie uses AI to analyse data in S2 and helps identify PII
 - Can also be used to analyse cloudtrail logs for suspicious API activity
 - Includes dashboards, Reports and Altering

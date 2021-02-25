@@ -1,0 +1,9 @@
+Load balancer
+- Application load balancer
+- network load balancer
+- classic load balancer
+
+Sticky session will go to particular ec2 instance for each user
+to avoid particular ec2 instnace disable ticky session
+
+

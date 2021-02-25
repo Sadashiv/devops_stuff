@@ -1,3 +1,6 @@
+Pass exam: https://www.toptal.com/aws-cloud-engineers/aws-certified-solutions-architect-exam-tips
+
+
 What is differance between AWS Regions and Availability zones
     AWS Regions are large and widely dispersed into separate geographic locations.
     Availability Zones are distinct locations within an AWS Region that are engineered
@@ -25,4 +28,8 @@ VPC
 IAM
     Anything we do in IAM is global not region based one.
 
+
+What is elastic ipaddress
+    An Elastic IP address is a reserved public IP address that you can assign to any EC2 instance in a particular region,
+    until you choose to release it. To allocate an Elastic IP address to your account in a particular region.
 

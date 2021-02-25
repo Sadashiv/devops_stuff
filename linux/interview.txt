@@ -2,6 +2,8 @@ lsof -- > List of open files for particular process
 What is the spam module in linux
 Spam emails are those unwanted messages sent in bulk, primarily from a commercial advertiser.
 
+What is Zombie process
+kill -s SIGCHLD pid
 
 What is jumpbox
 Bastion hosts (also called “jump servers”) are often used as a best practice for accessing privately

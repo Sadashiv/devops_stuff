@@ -103,7 +103,7 @@ EC2 Hibernate
 - You can create cloudwatch alarms which trigger notifications
 - Cloudwatch is all about monitoring performance. CloudTrail monitors API calls and auditing AWS account
 
-CloudWatch
+* CloudWatch
 - Standarad monitoring is 5 minute
 - Detailed monitoring is 1 minute
 
