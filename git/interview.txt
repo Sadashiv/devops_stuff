@@ -1,0 +1,14 @@
+how to clone from other server og linux
+git clone user@ip:/path_to_repo
+
+How to checkout particular folder from given branch during the clone
+
+mkdir spares
+cd sparse/
+git init
+git remote add origin git@thub.com:sadashiv/linux_user_mgmt
+git config core.sparseCheckout true
+echo "task" >> .git/info/sparse-checkout
+git pull origin master
+
+

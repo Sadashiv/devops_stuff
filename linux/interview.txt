@@ -202,7 +202,5 @@ What is a typical size for a swap partition under a Linux system?
     If this is not possible, then the minimum size should be the same as the amount of memory installed.
 
 
-
-
-
+How to find the mount path-> $mount - lists all the mount happened in that server
 
