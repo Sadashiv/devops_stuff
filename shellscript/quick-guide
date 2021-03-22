@@ -1,0 +1,60 @@
+How to avoid sudo passwd in Linux
+Edit in /etc/sudoers
+
+1. RHEL/CentOS
+   sadashiv ALL=(ALL)       NOPASSWD: ALL
+   Note: Post NOPASSWD: space is required in CentOS/RHEL
+2. UBUNTU/Debian
+   sadashiv    ALL=(ALL) NOPASSWD:ALL
+   Note: Post NOPASSWD: space is not required in Ubuntu/Debian
+
+3. file:////home/sadashiv/gittraining
+    Considered as url from local file system
+
+4. Facing issue with sudoers 
+   pkexec sudoers -> Will open and fix issue
+
+5. Open particular port in ubuntu
+   Check port opened -> sudo ufw status verbose
+   Open port 800 -> sudo ufw allow 8000/tcp
+
+   To allow IP address 192.168.1.10 access to port 22 for all protocols
+   sudo ufw allow from 192.168.1.10 to any port 22
+
+   Open port 74.86.26.69:443 (SSL 443 nginx/apache/lighttpd server) for all, enter:
+   sudo ufw allow from any to 74.86.26.69 port 443 proto tcp
+
+   To allows subnet 192.168.1.0/24 to Sabma services, enter:
+   ufw allow from 192.168.1.0/24 to any app Samba
+
+6. Open particular port in CentOS/RHEL
+   vim /etc/sysconfig/iptables
+   temproary open port -> iptables -F
+   sudo firewall-cmd --zone=public --add-port=8081/tcp --permanent
+   sudo firewall-cmd --reload
+   # vi /etc/services
+   # vi /etc/services
+    testport        55555/tcp   # Application Name
+
+
+Find the number cpu in linux server 
+nproc --all
+getconf LONG_BIT
+
+rpm -qa pkgname
+dpkg --verify gcc -> No ouput pkg installed
+yum deplist gcc
+rpm -qR gcc
+free -m
+free -g
+
+#Comment out multiple lines in shell script
+<<COMMENT
+Hello Sadashiv
+blabla
+COMMENT
+
+sudo chkconfig --level 2345 mysqld on
+systemctl list-unit-files --type=service
+sudo chkconfig --level 2345 mysqld on
+
