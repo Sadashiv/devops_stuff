@@ -13,4 +13,12 @@ Every Linux System has three options to clear cache without interrupting any pro
 Freestar
 3. Clear PageCache, dentries and inodes.
 
-# sync; echo 3 > /proc/sys/vm/drop_caches 
+# sync; echo 3 > /proc/sys/vm/drop_caches
+
+Server A to B copy
+scp /path/server/A/source username@serverB:/path/to/destination
+
+Server B to A copy
+scp username@server:/path/to/file /path/to/local/destination
+rsync also works similar way
+
