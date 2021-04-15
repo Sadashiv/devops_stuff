@@ -1,9 +1,59 @@
 Interview Questions
 ===================
-1. Generators
-2. Decorators
-3. Collections
-4. Regular expressions
+
+https://devops.com/11-open-source-devops-tools-we-love-for-2021/
+
+1. Kubernetes
+2. Docker
+3. Istio
+4. GitHub Actions
+5. Jenkins
+6. Prometheus
+7. Ansible
+8. Chef
+9. Terraform
+10. JAMStack
+11. ELK Stack
+
+AWS Certified solution architect
+Docker and Containers
+Kubernetes
+
+CloudFormation
+Terraform
+Shared libraries in Jenkins pipeline
+python
+
+Nexus artifactory server
+
+ssg
+
+quay.io
+create rpm repo and try installing package
+buildah
+
+db server and other serevr order and payment how interact and zero downtime to manage
+Blue green deployment
+Server request should go to particular country if down only switch ot other country side
+
+
+Tools
+Jira
+SVN, GIt, GitHub
+Jenkins
+maven
+selenium
+Puppet
+Buildout tool
+Docker
+Kubernetes
+cvs/svn to git migration with code history.
+
+Puppet module development and testing
+AWS cloud instance creation and applicaton installation
+
+python and Shellscript, Jenkins Pipeline, Apache Groovy script
+
 
 Appleshiv sadaSHIV AppleSHIV
 Appleshiv sadaSHIV AppleSHIV
