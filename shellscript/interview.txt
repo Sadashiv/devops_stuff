@@ -1,0 +1,13 @@
+Problem Statement:
+ You are in a Linux environment, which contains lots of files and many of them are
+ duplicates (Same content but different names), which you want to remove.
+
+ Now, can you create a shell script which takes a single argument (the name of the
+ directory) and finds all the regular files immediately under that directory which are
+ duplicates, and replaces those duplicates with hard links.
+
+ If the script finds two or more files that are duplicates, then it should keep the file whose
+ name is alphabetically first and replace all others with hard link.
+
+ Ignore all non-regular files like symbolic or hard links. Throw error if there are issues in
+ reading the file.
