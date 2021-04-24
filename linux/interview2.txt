@@ -22,3 +22,4 @@ Server B to A copy
 scp username@server:/path/to/file /path/to/local/destination
 rsync also works similar way
 
+docker images | awk -F " " '{print $3}'

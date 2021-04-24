@@ -33,3 +33,7 @@ What is elastic ipaddress
     An Elastic IP address is a reserved public IP address that you can assign to any EC2 instance in a particular region,
     until you choose to release it. To allocate an Elastic IP address to your account in a particular region.
 
+What is jumpbox
+    Bastion hosts (also called “jump servers”) are often used as a best practice for accessing privately
+    accessible hosts within a system environment.To access it for product updates or managing system patches,
+    you typically log in to a bastion host and then access (or “jump to”) the application host from there.
