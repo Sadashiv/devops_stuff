@@ -12,6 +12,10 @@ echo "task" >> .git/info/sparse-checkout
 git pull origin master
 
 what is the differance between pull request and merge request
+ -> Merge or pull requests are created in a git management application and ask an assigned person to merge two branches.
+    Tools such as GitHub and Bitbucket choose the name pull request since the first manual action would be to pull the feature branch.
+    Tools such as GitLab and Gitorious choose the name merge request since that is the final action that is requested of the assignee.
+    In this article we'll refer to them as merge requests.
 
 what is the add does and what are staging steps
  -> git add . adds all modified and new (untracked) files in the current directory and all subdirectories to the staging
