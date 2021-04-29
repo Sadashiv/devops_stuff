@@ -11,4 +11,15 @@ git config core.sparseCheckout true
 echo "task" >> .git/info/sparse-checkout
 git pull origin master
 
+what is the differance between pull request and merge request
+
+what is the add does and what are staging steps
+ -> git add . adds all modified and new (untracked) files in the current directory and all subdirectories to the staging
+    area (a.k.a. the index), thus preparing them to be included in the next git commit . Any files matching the patterns
+    in the . gitignore file will be ignored by git add .
+
+ -> The git add command adds a change in the working directory to the staging area. It tells Git that you want to include
+    updates to a particular file in the next commit. However, git add doesn't really affect the repository in any
+    significant way—changes are not actually recorded until you run git commit.
+
 

@@ -42,7 +42,7 @@ docker info ->Most config values of engine
 
 Old and new way of running docker commands
 docker container run - new way of run
-docker run - Oold way of run
+docker run - Old way of run
 
 Images and containers
 A container is launched by running an image. An image is an executable package that includes everything
@@ -97,7 +97,6 @@ sudo rm -rf /var/run/docker.sock
 
 
 $ docker image ls<br/>
-$ docker container ls --all<br/>
 
 Recap and cheat sheet
 ## List Docker CLI commands
@@ -107,12 +106,6 @@ docker container --help
 docker --version<br/>
 docker version<br/>
 docker info
-
-## Execute Docker image
-docker run hello-world
-
-## List Docker images
-docker image ls
 
 ## List Docker containers (running, all, all in quiet mode)
 docker container ls<br/>
@@ -134,14 +127,6 @@ DNS Settings<br/>
   "dns": ["your_dns_address", "8.8.8.8"]
 }
 
-Run the app, mapping your machine’s port 4000 to the container’s published port 80 using -p:
-
-docker run -p 4000:80 flask
-
-http://0.0.0.0:80
-
-$ docker container ls
-
 --> Always create docker container then start and attache to enter into the container
 Run in the background
 docker run -d -p 4000:80
@@ -153,6 +138,7 @@ A registry is a collection of repositories, and a repository is a collection of 
 except the code is already built. An account on a registry can create many repositories. 
 The docker CLI uses Docker’s public registry by default.
 
+Create tag in local<br/>
 docker tag image username/repository:tag
 
 Push image to public<br/>
@@ -165,7 +151,7 @@ Get the ipaddress of docker container<br/>
 docker inspect  2c8f59c4cd14 | grep IPAddress
 
 docker run --name containername -it  centos /bin/bash<br/>
-docker run --name pso -it psoportal:v0.0.1 /bin/bash
+docker run --name portal -it portal:v0.0.1 /bin/bash
 
 docker swarm init<br/>
 docker swarm leave<br/>
@@ -181,13 +167,8 @@ $ docker container ls
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES<br/>
 [sadashiv@sadashiv-ThinkPad-E480 docker (master #)]$ docker image ls<br/>
 REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE<br/>
-psoportal            v0.0.1              0b00f67f0940        50 minutes ago      578MB<br/>
 9538253250/testing   latest              6e68729d7a56        29 hours ago        148MB<br/>
-flask                latest              6e68729d7a56        29 hours ago        148MB<br/>
-testing              latest              6e68729d7a56        29 hours ago        148MB<br/>
-python               2.7-slim            f462855313cd        2 weeks ago         137MB<br/>
 centos               latest              67fa590cfc1c        5 weeks ago         202MB<br/>
-hello-world          latest              fce289e99eb9        9 months ago        1.84kB
 
 $ docker service ls<br/>
 ID                  NAME                MODE                REPLICAS            IMAGE                       PORTS<br/>
@@ -290,13 +271,8 @@ docker cotainer connect <network_id> <container_id>
 docker container exec -it <frst_cotainer_id_nginx> ping <second_container_id_nginx>
 Always create custom network
 
-Image: Image is an ordered collection of root filesystem changes and the corresponding execution parameters for use within container runtime.
-Not complete os, no kernel, kernel modules(eg drivers)
-
 docker history centos
 docker image inspect centos - metadata(data about data)
-docker image tag nginx 9538253250/nginx - Create tag in the repo pointing to local
-docker push username/image
 
 build docker image using Dockerfile
 If the file is different one use -f filename

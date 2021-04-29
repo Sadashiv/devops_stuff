@@ -20,7 +20,7 @@ kubectl apply (Create/Update anything via YAML)
 List all the resource in kuberenets-> kubectl api-resources
 What imperative and Declarative
 Imperative -> Give the direction from start to end(CLI)
-Declarative -> Only start and end will be already defined
+Declarative -> Only start and end will be already defined(System will be taken care)
 
 In kubernetes imperative
 kubectl get pods
@@ -37,7 +37,6 @@ $ kubectl run custom-nginx --image=nginx --port=8888
 $ kubectl create ns dev-ns
 $ kubectl create deployment redis-deploy --image=redis --namespace=dev-ns --dry-run=client -o yaml > deploy.yml
 $ kubectl apply -f deploy.yml
-$ kubectl run httpd --image=httpd:alpine --port=80 expose
 $ kubectl run httpd --image=httpd:alpine --port=80 --expose
 $ kubectl run httpd1 --image=httpd:alpine --port=80 --expose
 
@@ -300,13 +299,15 @@ nodeaffinity -> pods are hosted on particular nodes
 
 Resources for pods can defined in yaml file
 
-static pods
+static pods(Without kubeapi server and without any cluster)
 /etc/kubernetes/manifests without api server to create static pods
-docker ps
+docker ps #Why not kubectl command
 kubelete can create pods with below ways
 kubelet take input from diffrent ways like pod definition.yaml
 static file folder
 http api endpoint
+
+static pods and DameonSets are ignored by kube-schedular
 
 if kubelete is part of cluster api then it creates pods in worker node as well as master node(kubectl) and read only in kubectl
 
@@ -364,3 +365,56 @@ ContainersReady: all containers in the Pod are ready.
 Initialized: all init containers have started successfully.
 Ready: the Pod is able to serve requests and should be added to the load balancing pools of all matching Services.
 
+apps/v1
+deployment/ReplicaSet
+
+Kind first letter starts with upper case letter
+
+kubectl edit replicaset
+kubectl describe pod frontend-deployment-56d8ff5458-dxc9
+kubectl run nginx --image=nginx --dry-run=client -o yaml > nginx.yaml
+
+mysql.connect("db-service.dev.svc.cluster.loca")
+db-service: service name
+dev: namespace
+svc: service
+cluster.loca: domain
+
+[sadashiv@slave-node ~]$ kubectl get pod --namespace=sada
+NAME           READY   STATUS    RESTARTS   AGE
+nginx          1/1     Running   4          53d
+simpleapppod   1/1     Running   4          52d
+
+#set particular context in the environment
+kubectl config set-context $(kubectl  config current-context) --namespace=sada
+
+kubectl run redis --image=redis:alpine --dry-run=client -o yaml > rdeis.yaml
+
+kubectl get pods --all-namespaces(see all the pod from all namespace)
+
+kubectl expose pod redis --port=6379 --name redis-service
+
+kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3
+
+#The target port for the service should be 80.
+kubectl run httpd --image=httpd:alpine --port=80 --expose
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: quota-mem-cpu-demo
+spec:
+  containers:
+  - name: quota-mem-cpu-demo-ctr
+    image: nginx
+    resources:
+      limits:
+        memory: "800Mi"
+        cpu: "800m"
+      requests:
+        memory: "600Mi"
+        cpu: "400m"
+
+Each container should min memory 1Gi and max 2Gi
+Each container should min CPU memory 1cpu and max 2cpu

@@ -1,5 +1,6 @@
 Containers Everywhere=New
 Dcoker container command don't have feature to scale up/down
+
 By using the swarm we can achieve it
 
 Swarm mode build in orachestration
@@ -43,6 +44,43 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 That's how the orchestration works and it brins up container if any continer goes down
 
+
+K8 vs swarm
+k8 installation varies os to os
+swarm come with default docker just make "docker swarm init" to start
+
+k8 support logging(kibana/ELK) and Grafana fro monitoring
+Swarm supported inly with third party applications
+
+Kubernetes is more of an all-in-one framework for distributed systems.
+Docker Swarm can deploy containers faster; this allows fast reaction times to scale on demand.
+
+Benefits & drawbacks of Kubernetes
+
+Benefits of Kubernetes:
+Kubernetes is backed by the Cloud Native Computing Foundation (CNCF).
+Kubernetes have an impressively huge community among container orchestration tools. Over 50,000 commits and 1200 contributors.
+Kubernetes is an open source and modular tool that works with any OS.
+Kubernetes provides easy service organization with pods
+
+Drawbacks of Kubernetes
+When doing it yourself, Kubernetes installation can be quite complex with steep learning curve. An option to solve this issue is to opt for a managed Kubernetes-as-a-service such as ours.
+In Kubernetes, it is required to have a separate set of tools for management, including kubectl CLI.
+It is Incompatible with existing Docker CLI and Compose tools
+
+Benefits & drawbacks of Docker Swarm
+
+Benefits of Docker Swarm
+Docker Swarm is easy to install with a fast setup
+Docker Swarm is a lightweight installation. It is simpler to deploy and Swarm mode is included in the Docker engine.
+Docker Swarm has an easier learning curve.
+Docker Swarm smoothly integrates with Docker Compose and Docker CLI. That’s because these are native Docker tools. Most of the Docker CLI commands will work with Swarm.
+
+Drawbacks of Docker Swarm
+Docker Swarm provides limited functionality.
+Docker Swarm has limited fault tolerance.
+Docker Swarm have smaller community and project as compared to Kubernetes community
+In Docker Swarm, services can be scaled manually.
 
 
 

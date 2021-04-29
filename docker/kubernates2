@@ -1,0 +1,41 @@
+kubectl get pods --selector env=dev | wc -l
+kubectl get pods  -o wide
+kubectl get pods --selector bu=finance
+kubectl get all --selector env=prod --no-headers|wc -l
+kubectl get all --selector env=prod,bu=finance,tier=frontend
+
+
+DaemonSets
+
+Will be deployed on each node with one pod
+which will be used for monitoring solution and logs viewer
+DaemonSets are similar to ReplicaSets
+only change is kind DaemonSets
+
+kubectl get daemonsets --all-namespaces -o wide
+kubectl get daemonsets --all-namespaces
+kubectl describe daemonset kube-flannel-ds --namespace=kube-system
+
+kubectl create deployment elasticsearch --image=k8s.gcr.io/fluentd-elasticsearch:1.20 -n kube-system --dry-run=client -o yaml > fluentd.yaml
+
+kubectl create -f fluentd.yaml
+
+
+Get static pods(Check for name)
+kubectl get pods --all-namespaces |grep -i controlplane | wc -l
+kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -o yaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
+
+kubectl get pods --all-namespaces -o wide  | grep static-greenbox
+
+root@controlplane:~# ssh node01
+root@node01:~# ps -ef |  grep /usr/bin/kubelet
+root       752   654  0 00:30 pts/0    00:00:00 grep --color=auto /usr/bin/kubelet
+root     28567     1  0 00:22 ?        00:00:11 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --network-plugin=cni --pod-infra-container-image=k8s.gcr.io/pause:3.2
+root@node01:~# grep -i staticpod /var/lib/kubelet/config.yaml
+staticPodPath: /etc/just-to-mess-with-you
+root@node01:~#
+
+kubectl describe pod kube-scheduler-controlplane --namespace=kube-system
+kubectl describe pod kube-scheduler-controlplane --namespace=kube-system |grep -i image
+
+
