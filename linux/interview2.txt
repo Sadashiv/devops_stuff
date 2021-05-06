@@ -23,3 +23,68 @@ scp username@server:/path/to/file /path/to/local/destination
 rsync also works similar way
 
 docker images | awk -F " " '{print $3}'
+
+how to execute script in the background
+nohup or &
+
+how to debug shell sscript
+bash -x or set -x in inside shell script
+
+get only username from /etc/passwd
+cat /etc/passwd|cut -d ":" -f1
+or
+awk -F ":" '{print $1}' /etc/passwd
+
+how to kill process
+kill -9 processid
+kill -15 graceful execution
+
+
+how to change file permission
+chmod +x file.sh
+
+how to unset/wipe out variable
+
+a=10 or export a=10
+echo $a
+10
+unset a
+echo $a
+
+find the number arguments passed to script
+$#
+
+differance between = and ==
+
+how to find particular work from file
+grep -w epmd /etc/passwd
+
+how to check directory
+-d directory
+
+how to check file
+-f directory
+
+
+Take default arument if the argument is passed
+$ a=
+$ get=${a:-0}
+$ echo $get
+0
+$ a=10
+$ echo $get
+0
+$ get=${a:-0}
+$ echo $get
+10
+
+grep -v grep #remove header for that column
+
+Get few charcters or particular string
+$ name=sadashiv
+$ get_name=${name: -4}
+$ echo $get_name
+shiv
+
+how to check the string is part of another or substring
+[[ $name =~ "my name is sadashiv" ]]; echo "String found"

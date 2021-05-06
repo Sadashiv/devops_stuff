@@ -38,4 +38,58 @@ root@node01:~#
 kubectl describe pod kube-scheduler-controlplane --namespace=kube-system
 kubectl describe pod kube-scheduler-controlplane --namespace=kube-system |grep -i image
 
+kubectl get pods
+kubectl top node
+kubectl top pod
+kubectl logs nginx-58687bd566-hptgm
+docker run logs containerid
+
+RollingUpdate, Deployment, Recreate
+
+kubectl get pod
+kubectl logs webapp-2
+kubectl logs webapp-2 -c simple-webapp
+
+kubectl describe deployment
+kubectl edit deployment frontend
+
+kubectl get pods  -n default
+kubectl describe pod ubuntu-sleeper
+command overwrite
+command:
+  - "sleep"
+  - "1200"
+
+environment define in yaml file
+
+env:
+ - name:
+   value:
+ - name:
+   value:
+
+other way to do is using configMaps from centralized path
+
+kubectl get configmaps
+kubectl describe configmaps
+kubectl create configmap webapp-config-map --from-literal=APP_COLOR=darkblue
+
+Secrets
+
+[sadashiv@slave-node ~]$ echo -n "mysql"| base64
+bXlzcWw=
+[sadashiv@slave-node ~]$ echo -n "bXlzcWw="| base64 --decode
+mysql
+
+kubectl get secrets
+kubectl describe secrets default-token-6gf8m
+kubectl create secret generic db-secret --from-literal=DB_Host=sql01 --from-literal=DB_User=root --from-literal=DB_Password=password123
+kubectl get secrets
+kubectl delete secret db-secret
+
+Multi container pod
+
+kubectl get pods blue -o jsonpath='{.spec.containers[*].name}'
+kubectl describe pod  elastic-search -n  elastic-stack
+kubectl -n elastic-stack exec -it app cat /log/app.log
 
