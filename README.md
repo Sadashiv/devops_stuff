@@ -19,6 +19,9 @@ AWS Certified solution architect
 Docker and Containers
 Kubernetes
 
+ddos
+loadbalancing
+
 CloudFormation
 Terraform
 Shared libraries in Jenkins pipeline
