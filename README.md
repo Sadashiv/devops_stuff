@@ -57,21 +57,18 @@ AWS cloud instance creation and applicaton installation
 
 python and Shellscript, Jenkins Pipeline, Apache Groovy script
 
-
 Appleshiv sadaSHIV AppleSHIV
 Appleshiv sadaSHIV AppleSHIV
 Appleshiv sadaSHIV AppleSHIV
 Appleshiv sadaSHIV AppleSHIV
-
 
 AWS Subente to more understanding
 VPC
 
 Security group is like fire wall
-How to make it particular ipaddress to opne
+How to make it particular ipaddress to open
 
-cloudtrail
-cloudfront
+cloudtrail cloudfront
 
 
 
