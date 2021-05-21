@@ -27,3 +27,11 @@ what is the add does and what are staging steps
     significant way—changes are not actually recorded until you run git commit.
 
 
+Let us say i fixed some issue and pushed arised another issue
+how to revert code base
+
+git revert <commitid>
+
+clone = init + remote + fetch + checkout
+git show :3:README.md #Show 3rd index
+
