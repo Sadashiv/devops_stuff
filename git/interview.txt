@@ -35,3 +35,18 @@ git revert <commitid>
 clone = init + remote + fetch + checkout
 git show :3:README.md #Show 3rd index
 
+git merge vs pull vs rebase
+
+git pull == git fetch && git merge
+
+git merge creates extra commit with local commit and remote commit id referance
+merge is nicebeacuse it's non-destructive operation
+  If master is very active, this can pollute your feature branch’s history quite a bit.
+  While it’s possible to mitigate this issue with advanced git log options,
+  it can make it hard for other developers to understand the history of the project.
+
+
+git rebase doesn't create extra commit, instead move commit of one branch on top of the other.
+linear history but it's destructive operatiob.
+
+git rebase -i master(interactive and commits that are to be moved)
