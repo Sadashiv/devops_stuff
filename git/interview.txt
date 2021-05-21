@@ -50,3 +50,45 @@ git rebase doesn't create extra commit, instead move commit of one branch on top
 linear history but it's destructive operatiob.
 
 git rebase -i master(interactive and commits that are to be moved)
+
+git push origin --delete merg_request or git push origin :merg_request
+
+normal init repo vs bare init
+
+ Shared repostory to be created  as bare repo.
+ Conventionally, repositories initialized with the --bare flag end in .git
+ The --bare flag creates a repository that doesn’t have a working directory,
+
+ git init repo
+ Initialized empty Git repository in /home/sadashiv/interview_questions/repo/.git/
+
+ ls repo/.git/
+ branches  config  description  HEAD  hooks  info  objects  refs
+
+ git init repobare.git --bare
+ Initialized empty Git repository in /home/sadashiv/interview_questions/repobare.git/
+ ls repobare.git/
+ branches  config  description  HEAD  hooks  info  objects  refs
+
+
+git worktree(work on many things parallel for same repo with multiple work environment and multiple branch)
+ git worktree add -b bugfix ./bugfixfolder master
+ Preparing ./bugfixfolder (identifier bugfixfolder)
+ HEAD is now at b696249 Merge branch 'master' of https://github.com/Sadashiv/interview_questions
+ cd ./bugfixfolder/
+ git branch
+ * bugfix
+   master
+   sada
+ git remote -v
+ origin	https://github.com/Sadashiv/interview_questions (fetch)
+ origin	https://github.com/Sadashiv/interview_questions (push)
+
+ git worktree list
+ /home/sadashiv/interview_questions               b696249 [master]
+ /home/sadashiv/interview_questions/bugfixfolder  b696249 [bugfix]
+ git worktree remove bugfixfolder
+
+  or  git worktree prune
+
+
