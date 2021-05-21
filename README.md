@@ -7,7 +7,7 @@ https://devops.com/11-open-source-devops-tools-we-love-for-2021/
 2. Docker
 3. Istio
 4. GitHub Actions
-5. Jenkins
+5. Jenkins(Job creation with as a code or programmatically)
 6. Prometheus
 7. Ansible
 8. Chef
