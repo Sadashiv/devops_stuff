@@ -92,11 +92,6 @@ cloudtrail cloudfront
 
 
 
-
-
-
-
-
 ShellScript: http://ss64.com/bash/
 ShellScript: http://ss64.com/bash/
 ShellScript: http://ss64.com/bash/
