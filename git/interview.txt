@@ -92,3 +92,9 @@ git worktree(work on many things parallel for same repo with multiple work envir
   or  git worktree prune
 
 
+git reset(soft,hard,mixed)
+soft is used to nothing operation in local
+
+git reset --soft nothing removed with staging index
+git reset --hard dangerous to do and revert all local changes
+git reset --mixed remove changes staged and come back with file as untracked
