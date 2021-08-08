@@ -228,3 +228,12 @@ Scripted type has very few limitations that to with respect to structure and syn
 
 For more info you could refer to this blog: https://www.edureka.co/blog/jenkins-pipeline-tutorial-continuous-delivery
 
+Reset password for jenkins admin
+userSecurity true to false
+restart jenkins and newly create/set password and take it store into old file, which is not good idea if the users already present
+
+vim users/admin_15055734841704161659/config.xml
+Take backup of old password hash and replace with new password hash
+restart jenkins
+
+Go to user and configure security settings and 

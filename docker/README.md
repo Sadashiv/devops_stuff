@@ -1,5 +1,9 @@
 Docker Concepts:
 https://kapeli.com/cheat_sheets/Dockerfile.docset/Contents/Resources/Documents/index
+https://docs.docker.com/compose/compose-file/
+https://docs.docker.com/develop/dev-best-practices/
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+https://docs.docker.com/engine/reference/builder/
 
 Docker is a platform for developers and sysadmins to develop, deploy, and run applications with containers.
 The use of Linux containers to deploy applications is called containerization.
@@ -8,7 +12,6 @@ Containers are not new, but their use for easily deploying applications is.
 Docker is an open-source software designed to facilitate and simplify application development.
 It is a set of platform-as-a-service products that create isolated virtualized environments for building, deploying, and testing applications.
 
-
 What is a Docker Image?
 A Docker image is an immutable (unchangeable) file that contains the source code, libraries, dependencies, tools, 
 and other files needed for an application to run.
@@ -16,7 +19,6 @@ Docker image template/read-only/snapshots
 
 A Docker container is a virtualized run-time environment where users can isolate applications from the underlying system.
 These containers are compact, portable units in which you can start up an application quickly and easily.
-
 
 Unlike virtual machines (VMs) where virtualization happens at the hardware level, containers virtualize at the app layer.
 They can utilize one machine, share its kernel, and virtualize the operating system to run isolated processes.
@@ -127,9 +129,9 @@ DNS Settings<br/>
   "dns": ["your_dns_address", "8.8.8.8"]
 }
 
---> Always create docker container then start and attache to enter into the container
+--> Always create docker container then start and attach to enter into the container
 Run in the background
-docker run -d -p 4000:80
+docker run -d -p 4000:80 centos
 
 Stop container with ID
 docker container stop <containerid>

@@ -86,8 +86,8 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 Docker and kubernetes installation in Ubuntu 18.04LTS
 =====================================================
 sudo apt update -y
-sudo apt install docker.io
 sudo apt install containerd
+sudo apt install docker.io
 sudo chmod 755 /home/sadashiv/.docker/config.json
 docker --version
 sudo systemctl enable docker.service
@@ -101,7 +101,6 @@ sudo swapoff -a
 sudo hostnamectl set-hostname master-node
 hostnamectl set-hostname slave-node
 kubectl get pods
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 cat /etc/resolv.conf
 sudo vim /etc/resolv.conf
@@ -130,7 +129,7 @@ $ sudo systemctl enable docker.service
 $ sudo service kubelet restart
 
 Start Rancher in ubuntu
-docker run -d --restart=unless-stopped -p 8080:8080 rancher/server:stable
+docker run -d --restart=unless-stopped -p 80:80 -p 443:443 --privileged -v /opt/rancher:/var/lib/rancher rancher/rancher:stable
 
 $ kubectl get nodes
 

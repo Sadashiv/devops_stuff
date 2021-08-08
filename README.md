@@ -3,8 +3,8 @@ Interview Questions
 
 https://devops.com/11-open-source-devops-tools-we-love-for-2021/
 
-1. Kubernetes
-2. Docker
+1. Kubernetes(rancher dashboard)
+2. Docker(image, container, docker-compose, custom registry, nexus artifactory)
 3. Istio
 4. GitHub Actions
 5. Jenkins(Job creation with as a code or programmatically)
@@ -14,6 +14,7 @@ https://devops.com/11-open-source-devops-tools-we-love-for-2021/
 9. Terraform
 10. JAMStack
 11. ELK Stack
+12. Sonarqube
 
 AWS Certified solution architect
 Docker and Containers
@@ -27,71 +28,20 @@ Terraform
 Shared libraries in Jenkins pipeline
 python
 
-Nexus artifactory server
-
 ssg
 
 quay.io
 create rpm repo and try installing package
 buildah
 
-db server and other serevr order and payment how interact and zero downtime to manage
 Blue green deployment
-Server request should go to particular country if down only switch ot other country side
-
-
-Tools
-Jira
-SVN, GIt, GitHub
-Jenkins
-maven
-selenium
-Puppet
-Buildout tool
-Docker
-Kubernetes
-cvs/svn to git migration with code history.
-
-Puppet module development and testing
-AWS cloud instance creation and applicaton installation
-
-python and Shellscript, Jenkins Pipeline, Apache Groovy script
-
-Appleshiv sadaSHIV AppleSHIV
-Appleshiv sadaSHIV AppleSHIV
-Appleshiv sadaSHIV AppleSHIV
-Appleshiv sadaSHIV AppleSHIV
-
-AWS Subente to more understanding
-VPC
-
-Security group is like fire wall
-How to make it particular ipaddress to open
-
 cloudtrail cloudfront
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ShellScript: http://ss64.com/bash/
-ShellScript: http://ss64.com/bash/
-ShellScript: http://ss64.com/bash/
+TODO:
+1. jdk/jre
+   Jenkins installation manual, system level, docker level
+   Plugin installation
+   slave creation
+   Ubuntu ssh should be installed
+2. Install softwares in ubuntu
+3. Rancher dashboard
