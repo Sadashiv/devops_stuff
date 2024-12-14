@@ -58,3 +58,55 @@ mgr_1.add_emp(dev_1)
 mgr_1.add_emp(dev_2)
 mgr_1.remove_emp(dev_2)
 mgr_1.display_emps()
+
+print("\n---> Inheritance for Animal  class example")
+class Animal():
+    def __init__(self):
+        print("Animal created")
+    def who_am_i(self):
+        print("I am animal")
+    def eat(self):
+        print("I am eating")
+
+myanimal = Animal()
+print(myanimal)
+
+class Dog(Animal):
+    def __init__(self):
+        Animal.__init__(self)
+        print("Dog Created")
+    #override older method
+    def who_am_i(self):
+        print("I am a dog!")
+
+    def bark(self):
+        print("Bow bow!")
+mydog = Dog()
+print(mydog)
+mydog.who_am_i()
+mydog.bark()
+
+class Dogs():
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} speaks bow bow"
+class Cat():
+    def __init__(self, name):
+        self.name = name
+    def speak(self):
+        return f"{self.name } speaks meow meow"
+
+dogs = Dogs('Mudhol Huland')
+cat = Cat('Mudhol Felix')
+print(dogs.speak())
+print(cat.speak())
+for pet in [dogs,cat]:
+    print(type(pet))
+    print(type(pet.speak()), pet.speak() )
+
+def pet_speak(pet):
+    print(pet.speak())
+pet_speak(dogs)
+pet_speak(cat)

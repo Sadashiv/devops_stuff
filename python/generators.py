@@ -130,3 +130,54 @@ my_list = [1, 3, 6, 10]
 # Output: <generator object <genexpr> at 0x0000000002EBDAF8>
 (x**2 for x in my_list)
 
+
+def create_cubes(n):
+    result = []
+    for x in range(n):
+        result.append(x**3)
+    return result
+
+print(create_cubes(10)) #This stores in the memory
+
+def create_cubes_with_yield(n):
+    for x in range(n):
+        yield x**3
+for kk in create_cubes_with_yield(10):
+    print(kk)
+print(list(create_cubes_with_yield(10)))
+
+def gen_fibonacci(n):
+    a = 0
+    b = 1
+    for i in range(n):
+        yield a
+        a,b = b, a+b
+
+for number in gen_fibonacci(10):
+    print(number)
+
+def simple_gen():
+    for i in range(3):
+        yield i
+for num in simple_gen():
+    print(num)
+g = simple_gen()
+print(g)
+print(next(g))
+print(next(g))
+print(next(g))
+#print(next(g))
+
+name="Sadashiv"
+#print(next(name))
+
+s_iter = iter(name)
+print(next(s_iter))
+print(next(s_iter))
+print(next(s_iter))
+print(next(s_iter))
+print(next(s_iter))
+print(next(s_iter))
+print(next(s_iter))
+print(next(s_iter))
+print(next(s_iter))
