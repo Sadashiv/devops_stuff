@@ -80,7 +80,8 @@ for index, details in enumerate(name): #start position can be set enumerate(name
 print(','.join(name))
 print(' - '.join(name))
 print(' - '.join(name).split('- '))
-
+import sys
+sys.exit(1)
 #Mutable
 name2 = name
 print(name)
@@ -132,4 +133,5 @@ print(lst)
 
 uniq = set(lst)
 print(uniq)
+
 
