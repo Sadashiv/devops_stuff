@@ -14,3 +14,7 @@ else
     echo "Extraction completed and placed the uv in the directory `pwd`"
     echo "*****************************************"
 fi
+
+./uv sync
+./uv sync --extra dev
+./uv build --wheel

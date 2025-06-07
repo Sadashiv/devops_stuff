@@ -30,7 +30,7 @@ pipx - used to install package in isolated virtual environment
     uv tree   --script example.py
 
 9. Using tools https://docs.astral.sh/uv/guides/tools/#running-tools
-    uvx django equivalent to uv tool run django #package should provide executables
+    "uvx django" equivalent to "uv tool run django"# to uv tool run django #package should provide executables
 
 10. Python project metadata is defined in a pyproject.toml
     Application projects are suitable for web servers, and command line interfaces
@@ -45,7 +45,7 @@ pipx - used to install package in isolated virtual environment
     scikit-build-core for projects with C, C++, FORTRAN, Cython
 
 11. manage dependencies
-    uv add git+https://github.com/psf/requests
+    uv add git+https://github.com/psf/requests #Add as editable installation
     uv add "httpx @ git+https://github.com/encode/httpx" #can be add as --branch, --tag --rev
     uv add boto3
     uv remove boto3
@@ -141,4 +141,11 @@ Lock pip==24.0
 #override with txt file
 uv pip compile pyproject.toml requirements-dev.in -o requirements-dev.txt
 uv pip compile pyproject.toml --extra foo =>Lock optional dependencies
+
+uv publish
+uv add "numpy; python_version >= '3.11'"
+
+uv run python -c "import uv"
+uv run python -c "import uvx"
+--no-install-project
 

@@ -13,16 +13,36 @@ authors = [
 requires-python = ">=3.8"
 dependencies = [
     "boto>=2.49.0",
+    "sada-lib",
+    "numpy==1.24.4",
+    "numpy==2.0.0",
 ]
 
 [project.scripts]
 uv = "uv:main"
 
 [project.optional-dependencies]
-extra = [
-    "pytest>=8.3.5",
+dev = [
+    "mypy==1.14.1",
+    "pylint==3.2.7",
+    "pytest==8.3.5",
 ]
 
-#[build-system]
-#requires = ["hatchling"]
-#build-backend = "hatchling.build"
+[tool.uv.sources]
+sada-lib = { path = "sada_lib", editable = true } #editable install similar to pipe install -e
+sada-app = { path = "sada_app", package = true } #editable install similar to pipe install -e
+uv = { path = "dist/uv-0.1.0-py3-none-any.whl" } #installing from local wheel
+
+#[tool.uv] #disable automatic locking
+#managed = false
+
+[dependency-groups]
+dev = [
+    "django",
+]
+lint = [
+    "ruff>=0.9.1",
+]
+
+[tool.uv]
+override-dependencies = ["numpy == 1.24.4"]
