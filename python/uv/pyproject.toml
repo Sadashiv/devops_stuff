@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools==70.2.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uv"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Sadashiv H", email = "sadamsrit@gmail.com" }
+]
+requires-python = ">=3.8"
+dependencies = [
+    "boto>=2.49.0",
+]
+
+[project.scripts]
+uv = "uv:main"
+
+[project.optional-dependencies]
+extra = [
+    "pytest>=8.3.5",
+]
+
+#[build-system]
+#requires = ["hatchling"]
+#build-backend = "hatchling.build"
