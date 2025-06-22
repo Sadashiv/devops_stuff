@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uv"
-version = "0.1.0"
+dynamic = ["version", "optional-dependencies"]
 description = "Add your description here"
 readme = "README.md"
 authors = [
@@ -12,26 +12,38 @@ authors = [
 ]
 requires-python = ">=3.8"
 dependencies = [
-    "boto>=2.49.0",
-    "sada-lib",
-    "numpy==1.24.4",
+    "boto>=2.49.0", #;platform_system=='Windows'",
+    "numpy==1.24.4;python_version > '3.9' and platform_system=='Windows'",
     "numpy==2.0.0",
+    "pysftp>=0.2.9",
 ]
+
+[tool.setuptools.dynamic]
+version = {file='version.txt'}
+optional-dependencies.test = {file='optional-dependencies-test.txt'}
 
 [project.scripts]
 uv = "uv:main"
 
-[project.optional-dependencies]
-dev = [
-    "mypy==1.14.1",
-    "pylint==3.2.7",
-    "pytest==8.3.5",
-]
+#[tool.optional-dependencies]
+#dev = [
+#    "mypy==1.14.1",
+#    "pylint==3.2.7",
+#    "pytest==8.3.5",
+#]
 
 [tool.uv.sources]
 sada-lib = { path = "sada_lib", editable = true } #editable install similar to pipe install -e
-sada-app = { path = "sada_app", package = true } #editable install similar to pipe install -e
+#sada-app = { path = "sada_app", package = true } #editable install similar to pipe install -e
 uv = { path = "dist/uv-0.1.0-py3-none-any.whl" } #installing from local wheel
+
+[tool.uv.workspace]
+members = [
+    "sada-lib",
+    "sada_app",
+    "sada_apps",
+    "pkg",
+]
 
 #[tool.uv] #disable automatic locking
 #managed = false
@@ -46,3 +58,21 @@ lint = [
 
 [tool.uv]
 override-dependencies = ["numpy == 1.24.4"]
+required-environments = [
+    "sys_platform == 'linux' and platform_machine == 'x86_64'"
+]
+
+cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }, { file = "requirements.txt" }]
+
+[tool.uv.pip] #APplicable only for running "uv pip" commands
+index-url = "https://test.pypi.org/simple"
+
+#[[tool.uv.index]]
+#name = "pytorch"
+#url = "https://download.pytorch.org/whl/cpu"
+#default = true #do not point to pypi default
+
+#[[tool.uv.index]]
+#name = "example"
+#url = "/path/to/directory"
+#format = "flat"

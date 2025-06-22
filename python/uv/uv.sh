@@ -9,7 +9,7 @@ else
     wget -c https://github.com/astral-sh/uv/releases/download/0.7.9/uv-x86_64-unknown-linux-gnu.tar.gz
 
     tar zxvf uv-x86_64-unknown-linux-gnu.tar.gz
-    cp uv-x86_64-unknown-linux-gnu/uv .
+    cp uv-x86_64-unknown-linux-gnu/uv . && cp uv-x86_64-unknown-linux-gnu/uvx .
     rm -fr uv-x86_64*
     echo "Extraction completed and placed the uv in the directory `pwd`"
     echo "*****************************************"

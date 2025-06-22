@@ -9,6 +9,8 @@ pipx - used to install package in isolated virtual environment
 
 2. Uninstall uv
     uv cache clean
+    uv cache prune #Removes all unused cache entries
+    uv --cache-dir
     rm -r "$(uv python dir)"
     rm -r "$(uv tool dir)"
 
@@ -148,4 +150,38 @@ uv add "numpy; python_version >= '3.11'"
 uv run python -c "import uv"
 uv run python -c "import uvx"
 --no-install-project
+
+ ./uvx django
+./uvx --from django django-admin
+uv python install 3.8
+--managed-python #no system python
+--no-managed-python #only take system python
+uv.toml files take precedence over pyproject.toml files, so if both uv.toml and pyproject.toml files are present in a directory, configuration will be read from uv.toml
+uv --config-file <path_to_uv_toml>
+uv will download pakcage from internal url first ir not sound it search in pypi to avoid malcious package publish
+uv supports version range >1.0, <2.0
+
+A build backend transforms a source tree (i.e., a directory) into a source distribution or a wheel.
+
+uv sync --refresh
+uv sync --reinstall
+https://docs.astral.sh/uv/reference/cli/#uv-run
+
+Create cache python version specific cache other it might throws the error persitient file system
+uv sync --project sada_lib/
+uv sync --directory uv 
+uv sync --directory uv --all-extras
+--allow-insecure-host to use the http://localhost
+uv init --package pkg  --build-backend setuptools
+
+--link-mode used when installing packages from global cache
+uv lock
+uv tree
+uv tool run/install/upgrade/list/uninstall/update-shell/dir
+uv python list/install/find/pin/dir/uninstall/
+uv pip compile/sync//install/uninstall/freeze/list/show/tree/check
+uv venv/build/publish
+uv cache dir/clean/prune
+uv self version
+uv help
 
