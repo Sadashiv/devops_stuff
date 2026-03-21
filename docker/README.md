@@ -5,20 +5,40 @@ https://docs.docker.com/develop/dev-best-practices/
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 https://docs.docker.com/engine/reference/builder/
 
+
+What is Docker?
+Docker is an open platform for developing, shipping, and running applications.
 Docker is a platform for developers and sysadmins to develop, deploy, and run applications with containers.
 The use of Linux containers to deploy applications is called containerization.
 Containers are not new, but their use for easily deploying applications is.
 
-Docker is an open-source software designed to facilitate and simplify application development.
-It is a set of platform-as-a-service products that create isolated virtualized environments for building, deploying, and testing applications.
+The Docker platform
+Docker provides the ability to package and run an application in a loosely isolated environment called a container.
+The isolation and security let you run many containers simultaneously on a given host. 
+Containers are lightweight and contain everything needed to run the application, so you don't need to rely on what's installed on the host.
 
 What is a Docker Image?
 A Docker image is an immutable (unchangeable) file that contains the source code, libraries, dependencies, tools, 
 and other files needed for an application to run.
 Docker image template/read-only/snapshots
 
-A Docker container is a virtualized run-time environment where users can isolate applications from the underlying system.
-These containers are compact, portable units in which you can start up an application quickly and easily.
+Docker architecture
+Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building,
+running, and distributing your Docker containers. The Docker client and daemon can run on the same system,
+or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API,
+over UNIX sockets or a network interface. Another Docker client is Docker Compose, that lets you work with applications consisting of a set of containers.
+
+The Docker daemon
+The Docker daemon (dockerd) listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes.
+A daemon can also communicate with other daemons to manage Docker services.
+
+The Docker client
+The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run,
+the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
+
+Docker objects
+When you use Docker, you are creating and using images, containers, networks, volumes, plugins, and other objects. This section is a brief overview of some of those objects.
+
 
 Unlike virtual machines (VMs) where virtualization happens at the hardware level, containers virtualize at the app layer.
 They can utilize one machine, share its kernel, and virtualize the operating system to run isolated processes.
@@ -97,6 +117,11 @@ sudo rm /etc/apparmor.d/docker
 sudo groupdel docker
 sudo rm -rf /var/run/docker.sock
 
+docker run -it linux_user_mgmt:0.3 bash
+apt update && apt install -y nodejs
+docker container commit -m "Added nodejs" 2d071a3d77a8(container id)  sadashiv (new image name)
+docker image history sadashiv
+docker run sadashiv node -e "console.log('Hello again')"
 
 $ docker image ls<br/>
 
@@ -117,6 +142,13 @@ docker container ls -aq<br/>
 Build Image
 docker build -t apache:v1.5 -f Dockerfile_apache .<br/>
 docker image build -t apache:v1.5 -f Dockerfile_apache . --no-cache=true<br/>
+
+Create tag in local<br/>
+docker tag image username/repository:<tag_version>
+docker tag lum:1.0 lum:latest
+
+Push image to public<br/>
+docker push username/repository:t<ag_version>
 
 # Set proxy server, replace host:port with values for your servers
 ENV http_proxy host:port<br/>
@@ -140,11 +172,8 @@ A registry is a collection of repositories, and a repository is a collection of 
 except the code is already built. An account on a registry can create many repositories. 
 The docker CLI uses Docker’s public registry by default.
 
-Create tag in local<br/>
-docker tag image username/repository:tag
-
-Push image to public<br/>
-docker push username/repository:tag
+set environment and memory details command line
+docker run -e POSTGRES_PASSWORD=secret --memory="512m" --cpus="0.5" postgres
 
 Run docker container<br/>
 docker run -p 5000:80 9538253250/testing:latest
@@ -155,22 +184,11 @@ docker inspect  2c8f59c4cd14 | grep IPAddress
 docker run --name containername -it  centos /bin/bash<br/>
 docker run --name portal -it portal:v0.0.1 /bin/bash
 
-docker swarm init<br/>
-docker swarm leave<br/>
-docker swarm leave --force<br/>
-docker swarm join --token SWMTKN-1-4i4knr4xnbz7ti8tgw8utc1243r13kbd8ui1tb7vmapr7njdw0-der121xbosee0fg0x6bn7ce5n 192.168.0.7:2377<br/>
-docker swarm join-token manager
 
 $ vim docker-compose.yaml<br/>
 $ docker stack deploy -c docker-compose.yaml getwebapp<br/>
 Creating network getwebapp_webnet<br/>
 Creating service getwebapp_web<br/>
-$ docker container ls
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES<br/>
-[sadashiv@sadashiv-ThinkPad-E480 docker (master #)]$ docker image ls<br/>
-REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE<br/>
-9538253250/testing   latest              6e68729d7a56        29 hours ago        148MB<br/>
-centos               latest              67fa590cfc1c        5 weeks ago         202MB<br/>
 
 $ docker service ls<br/>
 ID                  NAME                MODE                REPLICAS            IMAGE                       PORTS<br/>
@@ -181,20 +199,8 @@ ID                  NAME                MODE                REPLICAS            
 1kv11tg86qtm        getwebapp_web       replicated          5/5                 9538253250/testing:latest   *:4000->80/tcp<br/>
 
 $ docker service ps getwebapp_web<br/>
-ID                  NAME                IMAGE                       NODE                     DESIRED STATE       CURRENT STATE           ERROR               PORTS<br/>
-o3k1cqgn0icz        getwebapp_web.1     9538253250/testing:latest   sadashiv-ThinkPad-E480   Running             Running 7 minutes ago<br/>
-azf2d28tgyas        getwebapp_web.2     9538253250/testing:latest   sadashiv-ThinkPad-E480   Running             Running 7 minutes ago<br/>
-x906d5yuizk2        getwebapp_web.3     9538253250/testing:latest   sadashiv-ThinkPad-E480   Running             Running 7 minutes ago<br/>
-le5wsh2za9o3        getwebapp_web.4     9538253250/testing:latest   sadashiv-ThinkPad-E480   Running             Running 7 minutes ago<br/>
-6pqrm99y44wa        getwebapp_web.5     9538253250/testing:latest   sadashiv-ThinkPad-E480   Running             Running 7 minutes ago<br/>
 
-$ docker container ls -q<br/>
-174611f33d37<br/>
-7dddb75553ae<br/>
-85a89bcc3c38<br/>
-92598eb43dd6<br/>
-fbc1ef55e56b
-
+docker stack is used to deploy and manage multi-container applications on a Docker Swarm cluster using a docker-compose.yml file
 
 docker stack ls                                            # List stacks or apps<br/>
 docker stack deploy -c <composefile> <appname>  # Run the specified Compose file<br/>
@@ -276,21 +282,6 @@ Always create custom network
 docker history centos
 docker image inspect centos - metadata(data about data)
 
-build docker image using Dockerfile
-If the file is different one use -f filename
-docker build -f DockerFile_memcached
-
-sudo docker build -t apache -f Dockerfile_apache .
-sudo docker tag 36b90ca05482 9538253250/apache - Tags local image id with user registry so that can be push to registry
-sudo docker push 9538253250/apache - Push to registry
-
-DockerFile
-FROM centos:latest
-ENV A B #export A=B
-RUN ls #Execute commands
-EXPOSE 80 443
-CMD ["nginx", "-g", "daemon off;"] # This will be performed when container is launched. Basically we can overwrite command
-WORKDIR /app -> RUN cd /app
 #Volume attach -v.
 #VOLUME /var/run/mysql
 docker container run -d --name nginx -p 80:80 -v $(pwd):/usr/share/nginx/html nginx
@@ -301,13 +292,10 @@ Container lifetime and Persitent data
 Two way : Data volumes and Bind mounts
 Volumes: make special location outside of container UFS
 Bind Mounts: link container path to host path
+Volumes are used for persistent data mounting database related containers database stuff to host machine
+bind mount are suitable for developers to make config file changes in the host machine and get afeected in container
 
 sudo docker container run --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=True mysql
-
-docker volume ls
-DRIVER              VOLUME NAME
-local               58f68ed02559cdcd309ab47165407b692c4be1dfd173d18f20ac6ef0a6d4b578
-post deletiion of our container the data will be persistent
 
 sudo docker container run -d --name mysql1 -e MYSQL_ALLOW_EMPTY_PASSSWORD=True -v /var/lib/mysql mysql
 sudo docker container run -d --name mysql2 -e MYSQL_ALLOW_EMPTY_PASSSWORD=True -v mysql-db:/var/lib/mysql mysql - named volume(-v mysql-db:/var/lib/m#
@@ -318,7 +306,11 @@ Docker_nginx and build and start container
 sudo docker build -t custom_nginx -f Dockerfile_nginx .
 sudo docker container run  -d  --name nginx -p 8075:80 -v $(pwd):/usr/share/nginx/html custom_nginx
 Change in the host file is going to take precdence
-#47 important
+
+docker run --mount type=bind,source=/HOST/PATH,target=/CONTAINER/PATH,readonly nginx
+docker run -v HOST-DIRECTORY:/CONTAINER-DIRECTORY:rw nginx
+
+
 
 Docker compose
 Comprised of two seperate but related things
@@ -385,3 +377,8 @@ argument that was not defined in the Dockerfile, the build outputs a warning.
 Login or configure custom docker registery
 docker login [server]
 
+docker swarm init<br/>
+docker swarm leave<br/>
+docker swarm leave --force<br/>
+docker swarm join --token SWMTKN-1-4i4knr4xnbz7ti8tgw8utc1243r13kbd8ui1tb7vmapr7njdw0-der121xbosee0fg0x6bn7ce5n 192.168.0.7:2377<br/>
+docker swarm join-token manager

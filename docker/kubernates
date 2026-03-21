@@ -17,8 +17,23 @@ kubectl run (Changing to be only for pod creation)
 kubectl create (Create some resources via CLI or YAML)
 kubectl apply (Create/Update anything via YAML)
 
+dockershim removed in k8s 1.24
+CRI - Contianer Runtime Interface is required 
+cgroupdriver is  required otherwise it will use systemd
+Note:
+Starting with v1.22 and later, when creating a cluster with kubeadm,
+if the user does not set the cgroupDriver field under KubeletConfiguration, kubeadm defaults it to systemd.
+ cat /etc/containerd/config.toml|grep SystemdCgroup
+            SystemdCgroup = true
+
+kubeadm: the command to bootstrap the cluster.
+
+kubelet: the component that runs on all of the machines in your cluster and does things like starting pods and containers.
+
+kubectl: the command line util to talk to your cluster.
+
 List all the resource in kuberenets-> kubectl api-resources
-What imperative and Declarative
+What is imperative and Declarative
 Imperative -> Give the direction from start to end(CLI)
 Declarative -> Only start and end will be already defined(System will be taken care)
 
