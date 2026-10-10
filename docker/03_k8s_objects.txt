@@ -1,0 +1,90 @@
+Objects In Kubernetes
+=====================
+k8s objects are persistent
+
+A Kubernetes object is a "record of intent"--once you create the object,
+the Kubernetes system will constantly work to ensure that the object exists. By creating an object, 
+
+bject spec and status
+Almost every Kubernetes object includes two nested object fields that govern the object's configuration: the object spec and the object status.
+
+in Kubernetes, a Deployment is an object that can represent an application running on your cluster. When you create the Deployment,
+you might set the Deployment spec to specify that you want three replicas of the application to be running.
+
+Required fields
+In the manifest (YAML or JSON file) for the Kubernetes object you want to create, you'll need to set values for the following fields:
+
+apiVersion - Which version of the Kubernetes API you're using to create this object
+kind - What kind of object you want to create
+metadata - Data that helps uniquely identify the object, including a name string, UID, and optional namespace
+spec - What state you desire for the object
+
+- Server side field validation
+
+The kubectl tool uses the --validate flag to set the level of field validation.
+It accepts the values ignore, warn, and strict while also accepting the values true (equivalent to strict) and false (equivalent to ignore). 
+The default validation setting for kubectl is --validate=true.
+
+Management technique -            Operates on            Recommended environment Supported writers Learning curve
+Imperative commands               Live objects           Development projects    1+                Lowest
+Imperative object configuration   Individual files       Production projects     1                 Moderate
+Declarative object configuration  Directories of files   Production projects     1+                Highest
+
+Imperative commands - kubectl create deployment nginx --image nginx
+Imperative object configuration
+Create the objects defined in a configuration file:
+
+kubectl create -f nginx.yaml
+Delete the objects defined in two configuration files:
+
+kubectl delete -f nginx.yaml -f redis.yaml
+
+Declarative object configuration
+kubectl diff -R -f configs/
+kubectl apply -R -f configs/
+
+Object Names and IDs
+Each object in your cluster has a Name that is unique for that type of resource. Every Kubernetes object also has a UID that is unique across your whole cluster.
+
+
+- Labels and Selectors
+Labels are key/value pairs that are attached to objects such as Pods. Labels are intended to be used to specify identifying attributes 
+of objects that are meaningful and relevant to users,
+
+Three kinds of operators are admitted =,==,!=. The first two represent equality (and are synonyms), while the latter represents inequality. For example:
+
+environment = production
+tier != frontend
+
+Set-based requirement
+Set-based label requirements allow filtering keys according to a set of values. Three kinds of operators are supported: in,notin and exists (only the key identifier). For example:
+
+environment in (production, qa)
+tier notin (frontend, backend)
+partition
+!partition
+
+kubectl get pods -l environment=production,tier=frontend
+or using set-based requirements:
+
+kubectl get pods -l 'environment in (production),tier in (frontend)'
+
+Updating labels
+Sometimes you may want to relabel existing pods and other resources before creating new resources. This can be done with kubectl label. For example, if you want to label all your NGINX Pods as frontend tier, run:
+
+kubectl label pods -l app=nginx tier=fe
+
+nitial namespaces
+Kubernetes starts with four initial namespaces:
+
+default
+Kubernetes includes this namespace so that you can start using your new cluster without first creating a namespace.
+kube-node-lease
+This namespace holds Lease objects associated with each node. Node leases allow the kubelet to send heartbeats so that the control plane can detect node failure.
+kube-public
+This namespace is readable by all clients (including those not authenticated). This namespace is mostly reserved for cluster usage, in case that some resources should be visible and readable publicly throughout the whole cluster. The public aspect of this namespace is only a convention, not a requirement.
+kube-system
+The namespace for objects created by the Kubernetes system.
+
+Annotations are key/value pairs.
+

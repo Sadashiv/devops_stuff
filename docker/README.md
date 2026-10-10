@@ -87,35 +87,26 @@ By contrast, a virtual machine (VM) runs a full-blown “guest” operating syst
 resources through a hypervisor. In general, VMs provide an environment with more resources than most applications need.
 
 Install Docker on Ubutnu
-sudo apt-get remove docker docker-engine docker.io
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable edge test"
-sudo apt update
-sudo apt install docker-ce
+Uninstall
+sudo rm -f /etc/apt/sources.list.d/docker.list
+sudo rm -f /etc/apt/keyrings/docker.gpg
+sudo apt-get remove -y docker docker-engine docker.io docker-ce docker-ce-cli containerd containerd.io runc
+sudo apt-get purge -y docker.io containerd.io containerd
+sudo apt-get autoremove -y
+
+Install
+
+sudo apt-get update
+sudo apt-get install -y docker.io containerd docker-buildx
+sudo systemctl enable --now docker
 sudo usermod -aG docker $USER
+newgrp docker
 sudo docker run hello-world
 
-
-curl -L https://github.com/docker/machine/releases/download/v0.12.2/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
-chmod +x /tmp/docker-machine &&
-sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
-
-curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
-
-
-Uninstall docker
-sudo apt-get purge -y docker-engine docker docker.io docker-ce
-sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce
-sudo rm -rf /var/lib/docker /etc/docker
-sudo rm /etc/apparmor.d/docker
-sudo groupdel docker
-sudo rm -rf /var/run/docker.sock
+docker compose version
 
 docker run -it linux_user_mgmt:0.3 bash
 apt update && apt install -y nodejs
@@ -144,7 +135,7 @@ docker build -t apache:v1.5 -f Dockerfile_apache .<br/>
 docker image build -t apache:v1.5 -f Dockerfile_apache . --no-cache=true<br/>
 
 Create tag in local<br/>
-docker tag image username/repository:<tag_version>
+docker tag <image_name> username/repository:<tag_version>
 docker tag lum:1.0 lum:latest
 
 Push image to public<br/>
@@ -283,7 +274,7 @@ docker history centos
 docker image inspect centos - metadata(data about data)
 
 #Volume attach -v.
-#VOLUME /var/run/mysql
+#VOLUME /var/run/mmeysql
 docker container run -d --name nginx -p 80:80 -v $(pwd):/usr/share/nginx/html nginx
 
 Above all called the layers of image to build
@@ -293,7 +284,7 @@ Two way : Data volumes and Bind mounts
 Volumes: make special location outside of container UFS
 Bind Mounts: link container path to host path
 Volumes are used for persistent data mounting database related containers database stuff to host machine
-bind mount are suitable for developers to make config file changes in the host machine and get afeected in container
+bind mount are suitable for developers to make config file changes in the host machine and get affected in container
 
 sudo docker container run --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=True mysql
 
@@ -309,7 +300,6 @@ Change in the host file is going to take precdence
 
 docker run --mount type=bind,source=/HOST/PATH,target=/CONTAINER/PATH,readonly nginx
 docker run -v HOST-DIRECTORY:/CONTAINER-DIRECTORY:rw nginx
-
 
 
 Docker compose
@@ -367,7 +357,9 @@ WORKDIR b
 WORKDIR c
 RUN pwd
 The output of the final pwd command in this Dockerfile would be /a/b/c.
-
+ENV APP_PORT=8000 -> -e APP_PORT=8090 Can't override run time, runtime container yes,
+ARG name=sadashiv -> --build-args ARGS override at build time, run time container no,
+ARG 
 ARG
 ARG <name>[=<default value>]
 The ARG instruction defines a variable that users can pass at build-time to the builder with the
@@ -382,3 +374,28 @@ docker swarm leave<br/>
 docker swarm leave --force<br/>
 docker swarm join --token SWMTKN-1-4i4knr4xnbz7ti8tgw8utc1243r13kbd8ui1tb7vmapr7njdw0-der121xbosee0fg0x6bn7ce5n 192.168.0.7:2377<br/>
 docker swarm join-token manager
+
+Multi-stage builds
+
+Dockerfile
+FROM eclipse-temurin:21.0.8_9-jdk-jammy AS builder
+WORKDIR /opt/app
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+COPY ./src ./src
+RUN ./mvnw clean install
+
+FROM eclipse-temurin:21.0.8_9-jre-jammy AS final
+WORKDIR /opt/app
+EXPOSE 8080
+COPY --from=builder /opt/app/target/*.jar /opt/app/*.jar
+ENTRYPOINT ["java", "-jar", "/opt/app/*.jar"]
+
+
+docker network create app-network
+
+docker run -d --name mysql-db --network  app-network -e MYSQL_ROOT_PASSWORD=root  -e MYSQL_DATABASE=linux_mgmt  \
+-e MYSQL_USER=sadashiv   -e MYSQL_PASSWORD=Sadashiv@123   -v mysql_data:/var/lib/mysql   mysql:8.0
+
+docker run  --name django-app --network app-network -p 8000:8000 lmt:2.1

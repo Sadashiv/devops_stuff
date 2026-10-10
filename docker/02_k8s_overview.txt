@@ -1,0 +1,80 @@
+What is kubernets 
+
+k8s is open source platform for manageing containerzied workload and services
+that facilitates both declartive configuration and automation
+
+- Why you need Kubernetes and what it can do
+Contianer are good way to bundle and run your applications
+In production if the container goes down, another container need to start
+wouldn't be easier if this behavior was handled by system
+
+Kubernetes provides you with:
+
+-- Service discovery and load balancing
+    Kubernetes can expose a container using a DNS name or its own IP address. If traffic to a container is high,
+    Kubernetes is able to load balance and distribute the network traffic so that the deployment is stable.
+--  Storage orchestration Kubernetes
+    allows you to automatically mount a storage system of your choice, such as local storage, public cloud providers, and more.
+-- Automated rollouts and rollbacks
+   You can describe the desired state for your deployed containers using Kubernetes,
+   and it can change the actual state to the desired state at a controlled rate. For example, you can automate Kubernetes to create new containers for your deployment, remove existing containers and adopt all their resources to the new container.
+-- Automatic bin packing
+   You provide Kubernetes with a cluster of nodes that it can use to run containerized tasks.
+   You tell Kubernetes how much CPU and memory (RAM) each container needs. Kubernetes can fit containers onto your nodes to make the best use of your resources.
+-- Self-healing Kubernetes restarts containers that fail, replaces containers,
+   kills containers that don't respond to your user-defined health check, and doesn't advertise them to clients until they are ready to serve.
+-- Secret and configuration management
+    Kubernetes lets you store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys.
+    You can deploy and update secrets and application configuration without rebuilding your container images, and without exposing secrets in your stack configuration.
+-- Batch execution
+   In addition to services, Kubernetes can manage your batch and CI workloads, replacing containers that fail, if desired.
+-- Horizontal scaling
+    Scale your application up and down with a simple command, with a UI, or automatically based on CPU usage.
+-- IPv4/IPv6 
+   dual-stack Allocation of IPv4 and IPv6 addresses to Pods and Services.
+-- Designed for extensibility
+   Add features to your Kubernetes cluster without changing upstream source code.
+
+continer_vm_traditional.png
+
+Traditional deployment era:
+
+Early on, organizations ran applications on physical servers. T
+
+Virtualized deployment era:
+
+As a solution, virtualization was introduced. It allows you to run multiple Virtual Machines (VMs) on a single physical server's CPU.
+Virtualization allows applications to be isolated between VMs and provides a level of securit
+
+Container deployment era:
+
+Containers are similar to VMs, but they have relaxed isolation properties to share the Operating System (OS) among the applications.
+Therefore, containers are considered lightweight. Similar to a VM, a container has its own filesystem,
+share of CPU, memory, process space, and more. As they are decoupled from the underlying infrastructure, they are portable across clouds and OS distributions.
+
+k8s_components.png
+
+Control Plane Components
+Manage the overall state of the cluster:
+
+kube-apiserver - The core component server that exposes the Kubernetes HTTP API.
+etcd - Consistent and highly-available key value store for all API server data.
+kube-scheduler - Looks for Pods not yet bound to a node, and assigns each Pod to a suitable node.
+kube-controller-manager - Runs controllers to implement Kubernetes API behavior.
+cloud-controller-manager (optional) - Integrates with underlying cloud provider(s).
+
+Node Components
+Run on every node, maintaining running pods and providing the Kubernetes runtime environment:
+
+kubelet - Ensures that Pods are running, including their containers.
+kube-proxy (optional) - Maintains network rules on nodes to implement Services.
+Container runtime - Software responsible for running containers. Read Container Runtimes to learn more.
+
+Addons
+Addons extend the functionality of Kubernetes. A few important examples include:
+
+DNS - For cluster-wide DNS resolution.
+Web UI (Dashboard) - For cluster management via a web interface.
+Container Resource Monitoring - For collecting and storing container metrics.
+Cluster-level Logging - For saving container logs to a central log store.
+

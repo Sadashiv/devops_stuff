@@ -94,65 +94,32 @@
 #echo "My IP: $MY_IP"
 #
 ## Initialize cluster
-#sudo kubeadm init \
-#  --pod-network-cidr=10.244.0.0/16 \
-#  --apiserver-advertise-address=$MY_IP \
-#  --node-name=$(hostname) \
-#  2>&1 | tee kubeadm-init.log
+#sudo kubeadm init --pod-network-cidr=10.244.0.0/16   --apiserver-advertise-address=$MY_IP --node-name=$(hostname) 2>&1 | tee kubeadm-init.log
 #
 ## Check init was successful
 #echo "Exit code: $?"
 
+sudo apt-get update
+# apt-transport-https may be a dummy package; if so, you can skip that package
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+# If the directory `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
+# sudo mkdir -p -m 755 /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.37/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+# This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.37/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+
+sudo systemctl enable --now kubelet
+
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16   --apiserver-advertise-address=192.168.0.149 --node-name=$(hostname) 2>&1 | tee kubeadm-init.log
+
 mkdir -p $HOME/.kube
-sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $USER:$USER $HOME/.kube/config
-
-# Verify
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl get nodes
-kubectl cluster-info
-
-# Install flannel
-kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
-
-# Create subnet.env (fixes common flannel issue)
-sudo mkdir -p /run/flannel/
-sudo tee /run/flannel/subnet.env <<EOF
-FLANNEL_NETWORK=10.244.0.0/16
-FLANNEL_SUBNET=10.244.0.1/24
-FLANNEL_MTU=1450
-FLANNEL_IPMASQ=true
-EOF
-
-# Verify flannel pods
-kubectl get pods -n kube-flannel
-
-# Install flannel
-kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
-
-# Create subnet.env (fixes common flannel issue)
-sudo mkdir -p /run/flannel/
-sudo tee /run/flannel/subnet.env <<EOF
-FLANNEL_NETWORK=10.244.0.0/16
-FLANNEL_SUBNET=10.244.0.1/24
-FLANNEL_MTU=1450
-FLANNEL_IPMASQ=true
-EOF
-
-# Verify flannel pods
-kubectl get pods -n kube-flannel
-
-# Remove taint so pods can run on master
-kubectl taint nodes --all node-role.kubernetes.io/control-plane-
-
-# Verify taint removed
-kubectl describe node $(hostname) | grep Taint
-# Should show: <none>
-
-# Debian/Ubuntu
-sudo apt-get install -y kubernetes-cni
-
-# OR manually download (replace with latest version)
-CNI_VERSION="v1.4.0"
-sudo mkdir -p /opt/cni/bin
-curl -L "https://github.com/containernetworking/plugins/releases/download/${CNI_VERSION}/cni-plugins-linux-amd64-${CNI_VERSION}.tgz" \
-  | sudo tar -C /opt/cni/bin -xz
+kubectl get pods -A
+kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
